@@ -1,0 +1,269 @@
+/*body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff0f5;
+    color: #333;
+    margin: 0;
+    padding: 2em;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 2em auto;
+    background: #ffffff;
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5em;
+  }
+  
+  select, button {
+    width: 100%;
+    padding: 0.8em;
+    margin-top: 0.5em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    background-color: #e91e63;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #c2185b;
+  }
+  
+  #resultado {
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  
+  .color-bloque {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  #simulador-uña {
+    margin-bottom: 2em;
+    text-align: center;
+  }
+  
+  .uña-simulada {
+    width: 60px;
+    height: 100px;
+    margin: auto;
+    border-radius: 50% 50% 40% 40%;
+    background-color: #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  #codigoColor {
+    margin-top: 0.5em;
+    font-weight: bold;
+  }
+  
+  #bloques-colores {
+    width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}*/
+
+body {
+  font-family: cursive;
+  background: #fdcbe8;
+  color: #333;
+  margin: 0;
+  padding: 2em;
+  background-image: url('Imagenes/FondoContColorimetria.jpg');
+}
+/* Contenedor general */
+.container {
+  max-width: 600px;
+  margin: 2em auto;
+  background: #ffffff;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: cursive;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index:0;
+}
+
+/* Entradas de selección */
+.form-group {
+  margin-bottom: 1em;
+}
+
+select {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Botón */
+button {
+  padding: 0.7em 1.5em;
+  background-color: #e91e63;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #c2185b;
+}
+
+/* Vista previa de uñas */
+.mano-simulada {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.uña-simulada {
+  width: 50px;
+  height: 90px;
+  border-radius: 50% 50% 40% 40%;
+  background-color: #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+/* Contenedor de colores */
+#bloques-colores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.color-bloque {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#mano {
+  padding: 1em;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver {/*Diseño de la clase para el boton de volver*/
+  display: inline-block;/*El botón se comporta como un bloque en línea*/
+  background-color: #e91e63;/*Color de fondo*/
+  color: white;/*Color de texto*/
+  padding: 0.6em 1.2em;/*Espacio alrededor del contenido (arriba/abajo, lados)*/
+  border-radius: 12px;/*Bordes redondeados*/
+  text-decoration: none;/*Elimina el subrayado si el botón es un enlace*/
+  font-weight: bold;/*Hace el texto en negrita*/
+  font-size: 1em;/*Tamaño del texto*/
+  transition: background-color 0.3s ease, transform 0.2s ease;/*Transicion*/
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);/*Sombra exterior*/
+}
+
+.btn-volver:hover {/*Estilos del boton cuando estan sobre el*/
+  background-color: #c2185b;/*Color de fondo*/
+  transform: scale(1.05);/*Zoom*/
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);/*Sombra exterior*/
+}
+
+.banner {/*Diseño del banner*/
+  position: relative;/*Permite posicionar elementos hijos (como la capa oscura con ::before) de forma absoluta respecto a este contenedor*/
+  background-image: url('Imagenes/FondoBanner.jpg'); /*Imagen de fondo del banner*/
+  background-size: cover;/*La imagen se ajusta para cubrir todo el contenedor, recortando si es necesario*/
+  background-position: center;/*Centra la imagen de fondo (horizontal y vertical) dentro del contenedor*/
+  color: white;/*Color del texto dentro del banner afecta a h1, a*/
+  padding: 2em;/*Espacio alrededor del contenido (arriba/abajo: 4, lados: 2)*/
+  text-align: center;/*Centra el texto horizontalmente*/
+  border-radius: 12px;/*Redondea las esquinas del banner*/
+  overflow: hidden;/*Oculta cualquier contenido o capa que se salga de los bordes redondeados (importante para la capa oscura ::before*/  
+  display: flex;/*Activa Flexbox para organizar los elementos hijos (el título y el botón)*/
+  flex-direction: column;/*Pone los elementos en columna*/
+  align-items: center;/*Centra horizontalmente*/
+  gap: 1em;/*Espacio entre título y botón*/
+}
+
+.banner::before {/*Diseño de la capa oscura*/
+  content: "";/*Requerido para que el pseudo-elemento ::before funcione*/
+  position: absolute;/*Posiciona este elemento encima de la imagen de fondo pero debajo del contenido*/
+  inset: 0;/*Esto hace que la capa ocupe todo el ancho y alto del banner*/
+  background: rgba(0, 0, 0, 0.5); /*Capa oscura (ajusta opacidad aquí)*/
+  z-index: 0;/*Esta capa se coloca detrás del contenido (h1, botón), pero encima de la imagen*/
+  border-radius: 12px;/*Borde redondeado*/
+}
+
+.banner > * {
+  position: relative;/*Establece contexto de posición para que el z-index funcione correctamente*/
+  z-index: 1; /*Asegura que el texto esté por encima de la capa oscura */
+}
+
+footer {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 1em 2em;
+  line-height: 1; /* interlineado */
+  color: #444;
+  border-top: 1px solid #ddd;
+  font-family: cursive;
+  font-size: 1em;
+  border-radius: 12px;/*Borde redondeado*/
+}
+
+footer .social-icons {
+  margin-top: 1em;
+}
+
+footer .social-icons i {
+  font-size: 1.4em;
+  margin: 0 0.5em;
+  color: #e91e63;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer .social-icons i:hover {
+  transform: scale(1.2);
+  color: #c2185b;
+}

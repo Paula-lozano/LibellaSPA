@@ -1,0 +1,364 @@
+body {
+    font-family: cursive; /*Texto*/
+    margin: 0; /*Espacio de izquierda y derecha*/
+    background: #ffffff;/*Color de fondo*/
+    color: #580451;/*Color de letra*/
+  }
+  
+  header {
+    background: #f8c8dc;/*Fondo del contenedor*/
+    display: flex;/*Bloque Fexible*/
+    justify-content: space-between;/*Distribuye el espacio entre los elementos dejando el primero alineado a la izquierda(Libella) y el último a la derecha(menu)*/
+    align-items: center;/*Alinea los elementos verticalmente al centro dentro del contenedor*/
+  }
+  
+  nav ul {/*Diseño al menu de navegacion*/
+    list-style: none; /*remueve los puntos o números que normalmente aparecen antes de cada ítem*/
+    display: flex;/*Convierte el contenedor de la lista (ul) en un Flexbox, lo que permite alinear los ítems (li) en una sola fila horizontal, en lugar de la columna vertical por defecto*/
+    gap: 7em;/*Espacio uniforme de 1em entre cada ítem hijo (li)*/
+  }
+  
+  nav a { /*Diseño a la etiqueta A*/
+    text-decoration: none;/*Elimina el subrayado predeterminado de los enlaces*/
+    color: #5a053e;/*Color de tectp*/
+    font-weight: bold;/*Negrilla*/
+  }
+  
+  .hero {/*Diseño a la clase hero*/
+    text-align: center;/*Texto alineado al centro*/
+    padding: 4em 2em;/*Espacio arriba y abajo del contenedor, izquierda y derecha del borde*/
+    background: linear-gradient(to right, #ffe0f0, #fbd0d8);/*Degradado en linea recta de izquierda a derecha*/
+  }
+  
+  .hero h2 {/*Diseño del texto*/
+    font-size: 3em;/*Tamaño del texto*/
+  }
+  
+  button {/*Diseño del boton*/
+    background: #e91e63;/*Color de fondo*/
+    color: white;/*Color de texto*/
+    padding: 0.7em 1.5em;/*Arriba y abajo del boton, izquierda y derecha del tamaño*/
+    border: none;/*Quita el borde exterior*/
+    border-radius: 8px;/*Borde redondeado*/
+    cursor: pointer; /*Cambia de cursor a mano el mouse*/
+  }
+  
+  button:hover {
+    background: #c2185b;/* Un rosado un poco más oscuro */
+    transform: scale(1.05); /* Ligeramente más grande */
+    transition: all 0.2s ease;
+    /*all: Indica que la transición debe aplicarse a todas las propiedades CSS que cambien (por ejemplo: background, color, transform, etc.).
+    También podrías especificar solo una propiedad, como background, transform, etc.
+    Ejemplo: transition: background 0.2s ease;
+
+    Duración de la transición: 0.2 segundos (200 milisegundos).
+
+    ease
+    Tipo de aceleración de la animación:
+    ease significa que empieza lenta, acelera en el medio y termina lenta.
+    Otras opciones: linear, ease-in, ease-out, ease-in-out.*/
+  }
+
+  .mision-vision {
+    background-image: url('Imagenes/FondoSectionMision-Vision.jpg');/*Imagen de fondo*/
+    background-size: cover;/*Escala la imagen para cubrir toda la sección*/
+    background-position: center;/*Centra la imagen horizontal y verticalmente*/
+    background-repeat: no-repeat;/*Evita que se repita la imagen*/
+    padding: 10px 2em;/*Espacio alrededor del contenido (arriba/abajo: 10px, lados: 2em)*/
+    text-align: center;/*Centra el texto horizontalmente*/
+    position: relative;/*Asegura que estos elementos puedan estar por encima del pseudo-elemento*/
+    color: white;/* Asegura que el texto se vea encima del fondo */
+  }
+  .mision-vision::before {/*Es un bloque invisible que se puede usar como fondo, sombra, marco, etc*/
+    content: "";/* Obligatorio para que el pseudo-elemento ::before aparezca*/
+    position: absolute;/* Posiciona el pseudo-elemento de forma absoluta dentro de su contenedor .mision-vision*/
+    inset: 0;/*Hace que el elemento cubra toda el área de su contenedor.*/
+    background: rgba(0, 0, 0, 0.4); /*Efecto de un vidrio oscuro encima de la imagen.*/
+    z-index: 0; /*Coloca esta capa por detrás del contenido real de la sección*/
+  }
+  
+  .mision-vision > * {/*Esta regla aplica a todos los elementos hijos directos de .mision-vision*/
+    position: relative;/*Asegura que estos elementos puedan estar por encima del pseudo-elemento*/
+    z-index: 1;/*Coloca el contenido por encima de la capa oscura*/
+  }
+
+  .mision-vision.h1{
+    font-size: 10px;/*Tamaño del texto*/
+  }
+  
+  .card-container {
+    display: flex;/* Usa Flexbox para organizar las tarjetas en una fila */
+    justify-content: center;/*Centra las tarjetas horizontalmente*/
+    gap: 6em; /*Separación entre tarjetas */
+    flex-wrap: wrap;
+    perspective: 1000px;
+    padding-top: 0;
+    padding-bottom: 2em;
+  }
+  
+  .card {
+    width: 280px;/*Ancho fijo de la tarjeta*/
+    height: 200px;/*Alto fijo de la tarjeta*/
+    position: relative;/* Necesario para posicionar las caras (front y back) absolutamente dentro */
+    transform-style: preserve-3d;
+    transition: transform 0.6s;/* Animación suave cuando se rota la tarjeta */
+    cursor: pointer;/* Cambia el cursor al pasar encima (mano) */
+    margin: 2em; /* espacio alrededor de cada tarjeta */
+  }
+  
+  .card:hover {
+    transform: rotateY(180deg);/* Rota la tarjeta 180 grados en el eje Y al pasar el mouse */
+  }
+  
+  .card .front,
+  .card .back {
+    position: absolute;/* Se colocan una sobre otra (superpuestas) */
+    width: 100%;/* Ocupan todo el ancho de la tarjeta */
+    height: 100%;/* Ocupan todo el alto de la tarjeta */
+    backface-visibility: hidden;/* Oculta la cara trasera cuando no está de frente */
+    border-radius: 10px;/* Bordes redondeados */
+    padding: 1.5em;/* Espaciado interno */
+    display: flex;/* Flexbox para centrar el contenido */
+    align-items: center;/* Centra verticalmente */
+    justify-content: center;/* Centra horizontalmente */
+    color: white;/* Color del texto en ambas caras */
+  }
+  
+  .card .front {
+    background: #d84e7c;/* Fondo para el frente */
+  } 
+  
+  .card .back {
+    background: #880e4f;/* Fondo para la parte de atrás */
+    transform: rotateY(180deg);
+    /*Transform: Permite poner tranformaciones visuales
+    moverlo (translate)
+    escalarlo (scale)
+    rotarlo (rotate)
+    inclinarlo (skew)
+    Gira 180 grados*/
+  }
+  
+  .servicios-grid {/*Diseño del menu de servicios*/
+    display: grid;/*Diseño de menu horizontal*/
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    /*Esta línea define cómo se organizan las columnas:
+    repeat:Repite una estructura de columna automáticamente.
+    auto-fit: El número de columnas se ajusta automáticamente al ancho disponible del contenedor (ideal para diseño responsivo).
+    minmax(120px, 1fr): Cada columna tiene como mínimo 120px y como máximo una fracción (1fr) del espacio disponible.
+    Esto asegura que los ítems no sean demasiado pequeños ni demasiado grandes, y que se adapten a pantallas pequeñas o grandes.*/
+    gap: 1em;/*Espacio uniforme de 1em entre cada ítem hijo (li)*/
+    padding: 2em;/*Espacio arriba y abajo*/
+    text-align: center;/*Texto alineado al centro*/
+    list-style: none;
+  }
+
+  .servicios-grid a {
+    text-decoration: none;/*Quita el subrayado de los enlaces*/
+    color: inherit; /* opcional: usa el color del texto padre */
+  }
+
+  .servicios {
+    position: relative;
+    background-image: url('Imagenes/FondoSectionServicio.jpg'); /*Ruta de la imagen*/
+    background-size: cover;/*La imagen se escala automáticamente para cubrir toda la sección, sin dejar espacios vacíos*/
+    background-position: center;/*Centra la imagen dentro del fondo*/
+    background-repeat: no-repeat;/*Evita que la imagen se repita si no llena completamente el contenedor*/
+    padding: 4em 2em;/*arriba y abajo, espacio vertical y a los lados, espacio horizontal*/
+    color: white;/*Color del texto*/
+    text-align: center;/*Alinea el texto al centro*/
+  }
+  
+  .servicios::before {/*Pone una capa oscura, sin dañar la imagen*/
+    content: "";/*Sin esta línea el ::before no aparecería crea un bloque visual vacío que puedes usar como capa.*/
+    position: absolute;/*Es necesario para que el pseudo-elemento se pueda expandir y colocar encima de su contenedor, ".servicios" debe tener position: relative; para que esto funcione correctamente*/
+    inset: 0;/*Esto hace que el pseudo-elemento cubra todo el área del contenedor ".servicios"*/
+    background: rgba(0, 0, 0, 0.4); /* filtro negro transparente */
+    z-index: 0;/*Coloca este pseudo-elemento detrás del contenido que está en la misma sección.
+    Para que el texto se muestre por encima, ese texto (u otros elementos) deben tener z-index: 1 o más, y position: relative o absolute.*/
+  }
+  
+  .servicios > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  form {
+    display: flex;/*Contenedor flexible*/
+    flex-direction: column;/*Los elementos se organizan en columna y no el fila*/
+    gap: 1em;/*Espacio entre cada elemento*/
+    max-width: 300px;/*Maximo del ancho en de 300PX*/
+    margin: auto;/*Centra el formulario horizontalmente dentro de su contenedor*/
+    padding: 1em;/*Agrega espacio interno dentro del formulario (alrededor de su contenido)*/
+  }
+
+  #citas {
+    background-image: url('Imagenes/FondoSectionReserva.jpg'); /* tu imagen de fondo */
+    text-align: center;/*Texto centrado*/
+    color: #5a053e;/*Color de texto*/
+  }
+
+
+
+  form select,/*Diseño para el selec del formulario*/
+  form input[type="tel"] {/*Aplica al campo de teléfono.*/
+  padding: 0.5em;/*Espacio alrededor del contenido (arriba/abajo, lados)*/
+  border: 1px solid #ccc;/*Borde exterior*/
+  border-radius: 5px; /*Borde redondeado*/
+}
+
+
+#opiniones {/*Diseño del contenedor*/
+  background: #fce4ec;/*Color de fondo*/
+  padding: 2em;/*Espacio interno del contenido (arriba/abajo, lados)*/
+  text-align: center;/*Texto centrado*/
+}
+
+#form-opinion {/*Diseño del formulario*/
+  display: flex;/*Contenedor flexible*/
+  flex-direction: column;/*Elementos organizados en columna*/
+  gap: 1em;/*Espacio entre lineado*/
+  max-width: 400px;/*Altura maxima*/
+  margin: auto;
+  /*
+  margin-top (arriba)
+  margin-right (derecha)
+  margin-bottom (abajo)
+  margin-left (izquierda)
+  */
+}
+
+#form-opinion input,
+#form-opinion textarea {
+  padding: 0.7em;/*Altura del interior*/
+  border-radius: 8px;/*Borde redondeado*/
+  border: 1px solid #ccc;/*Borde exterior de los campos*/
+  font-family: cursive; /*Texto*/
+}
+
+#lista-opiniones {/*Diseño para el listado de opiniones*/
+  margin-top: 2em;/*Espacio parte superior de la lista de opiniones*/
+  text-align: left;/*Alinea el texto a la izquierda*/
+  max-width: 600px;/*El elemento no crecerá más allá de 600px de ancho*/
+  margin-inline: auto;/*margin-inline controla los márgenes izquierdo y derecho, Le dice al navegador que calcule automáticamente los márgenes para centrar horizontalmente*/
+}
+
+.opinion {/*Diseño para los bloques de opiniones*/
+  background: #ffffff;/*Fondo*/
+  border: 1px solid #ccc;/*Borde exterior*/
+  padding: 0.5%;/*Altura del interior*/
+  border-radius: 10px;/*Borde redondeado*/
+  margin-bottom: 1em;/*Espacio en la parte inferior del contenedor*/
+}
+
+
+/* Estilo común para secciones con fondo */
+#citas, #opiniones {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0.5em 2em;/*Ancho y largo del contenedor*/
+  color: #5a053e;/*Color de los titulos*/
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Capa oscura encima del fondo */
+#citas::before, #opiniones::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(160, 155, 155, 0.5); /* Capa semitransparente negra */
+  z-index: 0;
+}
+
+/* Contenido encima de la capa */
+#citas > *, #opiniones > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mejora en formularios o texto para que sea legible */
+#citas form,
+#opiniones form,
+#opiniones #lista-opiniones {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  padding: 1em;
+  border-radius: 12px;
+  margin-top: 2em;
+}
+
+#opiniones {
+  background-image: url('Imagenes/FondoSectionOpiniones.jpg'); /* tu imagen de fondo */
+}
+
+/* Encabezado con logo alineado a la izquierda */
+.encabezado {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 3em;
+  background-color: #fff;
+}
+
+/* Pie de página */
+.pie {
+  background-color: #ffffff;
+  padding: 2em 1em;
+  border-top: 1px solid #ddd;
+  font-family: cursive !important;
+  font-size: 1em;
+  color: #580451;
+}
+
+/* Contenedor del contenido del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+/* Estilo común del logo */
+.logo-imagen {
+  max-width: 100px;
+  height: auto;
+}
+
+.logo-enc{
+  max-width: 300px;     /* Controla el tamaño visible */
+  height: auto;         /* Mantiene la proporción original */
+  display: block;       /* Elimina espacio extra debajo */
+  margin: 0 auto;       /* Centra horizontalmente */
+}
+@media (max-width: 768px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    text-align: center;
+  }
+
+  .logo-enc {
+    max-width: 200px;
+    margin-bottom: 1em;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 1em;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav li {
+    margin: 0;
+  }
+
+  nav a {
+    font-size: 1.2em;
+  }
+}

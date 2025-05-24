@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SPA de Uñas BellaManos</title>
+  <link rel="stylesheet" href="Style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="encabezado">
+    <img src="Imagenes/Logo.jpg.jpeg" alt="Logo" class="logo-enc">
+
+    <!-- Menu de navegacion -->
+    <nav> 
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#servicios"> Servicios</a></li>
+        <li><a href="#citas"> Reserva</a></li>
+        <li><a href="#opiniones"> Opiniones</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Espacio de mision y vision -->
+  <section class="mision-vision">
+
+    <!-- Tarjetas giratorias -->
+    <div class="card-container">
+
+      <!-- Tarjeta de mision -->
+      <div class="card">
+
+        <!-- Cara frontal de la tarjeta -->
+        <div class="front">
+          <h1>Misión</h1>
+        </div>
+
+        <!-- Cara trasera de la tardejta -->
+        <div class="back">
+          <p>Brindar un servicio de calidad que resalte la belleza y confianza de nuestras clientas, a través de técnicas innovadoras en cuidado de uñas.</p>
+        </div>
+      </div>
+      
+      <!-- Tarjeta de vision -->
+      <div class="card">
+
+        <!-- Cara frontal -->
+        <div class="front">
+          <h1>Visión</h1>
+        </div>
+
+        <!-- Cara trasera -->
+        <div class="back">
+          <p>Ser el SPA de uñas líder en la ciudad, reconocido por nuestra excelencia en atención, creatividad y compromiso con la satisfacción del cliente.</p>
+        </div>
+      </div>
+
+      
+      <div class="card">
+          <div class="front">
+            <h1>¡Descuento Especial!</h1>
+          </div>
+          
+          <div class="back">
+            <p>Obtén un 20% de descuento en tu primera cita reservando hoy mismo.</p>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <h2>¡Renueva tu estilo con unas uñas perfectas!</h2>
+    <p>Reserva hoy tu cita en el mejor SPA de uñas de la ciudad.</p>
+    <button onclick="scrollToCitas()">Reservar ahora</button> 
+    <!-- "onclick" atributo de HTML, que ejecuta una funcion en JavaScript "scrollToCitas" 
+    Le dice al navegador: "cuando hagan clic en este botón, ejecuta la función 
+    scroll automático (desplazamiento suave) hacia una sección de la página-->
+  </section>
+
+  <section id="servicios" class="servicios">
+    <h3>Servicios</h3>
+    <ul class="servicios-grid">
+      <li><button><a href="Galeria.html?servicio=manicure">Manicure</a></li> <!--Lleva un HTML Galeria.html pasando un parámetro en la URL llamado servicio con valor manicure--></button>
+      <li><button><a href="Galeria.html?servicio=pedicure">Pedicure</a></li> <!--Lleva un HTML Galeria.html pasando un parámetro en la URL llamado servicio con valor pedicure--></button>
+      <li><button><a href="Galeria.html?servicio=acrilicas">Uñas Acrílicas</a></li> <!--Lleva un HTML Galeria.html pasando un parámetro en la URL llamado servicio con valor Arficiales--></button>     
+      <li><button><a href="Simulador.html">Simulador de Colorimetria</a></li> <!--Lleva un HTML Galeria.html pasando un parámetro en la URL llamado servicio con valor simulador--></button>
+    </ul>
+  </section>
+
+  <section id="citas" class="citas">
+    <h3>Reserva tu Cita</h3>
+  
+    <form id="form-cita"> <!-- Formulario con su ID -->
+
+      <input type="text" id="nombre" placeholder="Tu nombre" required />
+      <!-- Campo para que el cliente escriba su nombre
+       "placeholder" es el texto que aparece dentro del campo antes de escribir.
+       "required" es obligatorio completarlo para enviar el formulario -->
+      
+       <input type="date" id="fecha" required />
+       <!-- Campo para seleccionar la fecha de la cita.
+        type="date" abre un calendario nativo del navegador.
+        required es obligatorio. -->
+
+      <select id="profesional" required>
+        <option value="" disabled selected>Selecciona una profesional</option>
+        <option value="alex">Alexandra Cubillos</option>
+        <option value="laura">Laura Lozano</option>
+      </select>
+      <!-- Lista desplegable con las dos profesionales disponibles.
+      La primera opción está deshabilitada y seleccionada por defecto.
+      Las otras dos (Alex y Laura) tienen valores que se usarán en lógica y envío de mensajes. -->
+
+      <select id="hora" required></select>
+      <!-- Lista desplegable (<select>) donde el usuario selecciona la hora deseada.
+      El contenido se llena dinámicamente desde JavaScript.
+      required obliga a elegir una hora. -->
+
+      <input type="tel" id="telefono" placeholder="Tu WhatsApp (+57...)" required />
+      <!-- Campo para ingresar el número de WhatsApp del cliente.
+      type="tel" permite ingresar números telefónicos.
+      required lo hace obligatorio. -->
+
+      <button type="submit">Agendar</button>
+      <!-- Botón para enviar el formulario.
+      type="submit" activa el evento de envío.-->
+    </form>
+  </section>
+
+  <section id="opiniones"><!--Espacio de reseñas -->
+    <h3>Comparte tu experiencia</h3>
+
+    <form id="form-opinion"><!--Formulario de reseñas -->
+      <input type="text" id="usuario" placeholder="Tu nombre" required />
+      <textarea id="comentario" rows="4" placeholder="Escribe tu opinión..." required></textarea>
+      <button type="submit">Enviar opinión</button>
+    </form>
+    <div id="lista-opiniones"></div>
+    <!--<div>: Contenedor vacío donde aparecerán las opiniones escritas.
+    "id="lista-opiniones" Se usa para agregar dinámicamente cada comentario enviado. -->
+  </section>
+
+  <footer class="pie">
+      <div class="footer-content">
+          <i class="fab fa-instagram"> @ibella.cute</i>
+          <i class="fas fa-phone-alt"> 3017501031</i>
+          <i class="fas fa-feather"> Libella · Estetica y Maquillaje</i>
+      <img src="Imagenes/Logo.jpg.jpeg" alt="Logo Libella" class="logo-imagen pie-logo">
+      </div>
+  </footer>
+
+  <script src="Java.js"></script>
+</body>
+</html>

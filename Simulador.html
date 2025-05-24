@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de Colorimetría</title>
+  <link rel="stylesheet" href="Simulador.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+
+<body>
+  <header class="banner"><!--Banner del encabezado-->
+    <h1>Simulador de Colorimetría para Uñas</h1>
+    <a href="Index.html" class="btn-volver">← Volver al inicio</a><!--Boton para volver al incio-->
+  </header>
+
+  <div class="container">
+    <div class="form-group">
+      <label for="piel">Selecciona tu tono de piel:</label>
+      <select id="piel">
+        <option value="">-- Seleccionar --</option>
+        <option value="clara">Clara</option>
+        <option value="media">Media</option>
+        <option value="trigueña">Trigueña</option>
+        <option value="morena">Morena</option>
+        <option value="oscura">Oscura</option>
+        <option value="ebano">Ébano</option>
+      </select>
+    </div>
+
+    <button onclick="mostrarColores()">Ver colores recomendados</button>
+
+    <div id="resultado">
+      <div id="simulador-uña">
+        <h3>Vista previa en mano</h3>
+        <div class="mano-simulada" id="mano">
+          <div class="uña-simulada" id="uña1"></div>
+          <div class="uña-simulada" id="uña2"></div>
+          <div class="uña-simulada" id="uña3"></div>
+          <div class="uña-simulada" id="uña4"></div>
+          <div class="uña-simulada" id="uña5"></div>
+        </div>
+        <p id="codigoColor"></p>
+      </div>
+
+      <div id="bloques-colores"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p><i class="fas fa-feather"></i>Libella SPA de Uñas</p>
+    <p><i class="fab fa-instagram"></i> @Libella.cute</p>
+    <p><i class="fas fa-phone-alt"></i> 3017501031</p>
+  </footer>
+
+  <script src="Simulador.js"></script>
+</body>
+</html>

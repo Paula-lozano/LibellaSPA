@@ -1,0 +1,118 @@
+body {
+    font-family: cursive; /*Letra Texto*/
+    margin: 0;/*Margen superior e inferior y de los lados*/
+    background: #f3b9cd;/*Color de fondo*/
+    color: #333;/*Color del Texto*/
+    padding: 1em;/*Espacio superior e inferior, y de los lados*/
+    background-image: url('Imagenes/FondoContColorimetria.jpg');
+  }
+  
+  header {
+    display: flex;/*Contenedor flexible*/
+    justify-content: space-between;/*Coloca el primer elemento alineado a la izquierda y el último a la derecha, con espacio máximo entre ellos*/
+    align-items: center;/*Alinea los elementos verticalmente al centro dentro del header el texto y los botones queden centrados*/
+    background: #f8c8dc;/*Color de fondo*/
+    padding: 0;/*Espacio superior e inferior, y de los lados*/
+  }
+  
+  .galeria { /*Diseño de la clase galeria*/
+    display: grid;/*Convierte el contenedor en un Grid Layout, permitiendo distribuir los elementos internos en filas y columnas*/
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));/*Crea columnas que se ajustan automáticamente (auto-fit) y que tienen un mínimo de 200px y un máximo que llene el espacio disponible (1fr). Esto hace que la galería sea responsiva*/
+    gap: 1.5em;/*Establece un espacio (separación) entre los elementos del grid*/
+    padding: 1em;/*Espacio alrededor del contenido (arriba/abajo, lados)*/
+    background: linear-gradient(to right, #fdccdd, #eea4ca);/*Degradado del fondo*/
+    border-radius: 20px;/*Bordes redondeados*/
+    box-shadow: 0 10px 25px #8b8383;/*Sombra exterior*/
+  }
+  
+  .galeria img {/*Diselo de las imagenes de la galeria*/
+    width: 100%;/*La imagen ocupa todo el ancho disponible*/
+    height: 220px;/*Altura*/
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    border-radius: 15px;/*Bordes redondeados*/
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);/*Sombra exterior*/
+    transition: transform 0.4s ease, box-shadow 0.4s ease;/*Transicion*/
+  }
+  
+  .galeria img:hover {/*Estilos de las imagenes cuando estan sobre ellas*/
+    transform: scale(1.08);/*Agranda la imagen*/
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);/*Sombra exterior*/
+  }
+
+  .btn-volver {/*Diseño de la clase para el boton de volver*/
+    display: inline-block;/*El botón se comporta como un bloque en línea*/
+    background-color: #e91e63;/*Color de fondo*/
+    color: white;/*Color de texto*/
+    padding: 0.6em 1.2em;/*Espacio alrededor del contenido (arriba/abajo, lados)*/
+    border-radius: 12px;/*Bordes redondeados*/
+    text-decoration: none;/*Elimina el subrayado si el botón es un enlace*/
+    font-weight: bold;/*Hace el texto en negrita*/
+    font-size: 1em;/*Tamaño del texto*/
+    transition: background-color 0.3s ease, transform 0.2s ease;/*Transicion*/
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);/*Sombra exterior*/
+  }
+  
+  .btn-volver:hover {/*Estilos del boton cuando estan sobre el*/
+    background-color: #c2185b;/*Color de fondo*/
+    transform: scale(1.05);/*Zoom*/
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);/*Sombra exterior*/
+  }
+
+  .banner-galeria {/*Diseño del banner*/
+    position: relative;/*Permite posicionar elementos hijos (como la capa oscura con ::before) de forma absoluta respecto a este contenedor*/
+    background-image: url('Imagenes/FondoBanner.jpg'); /*Imagen de fondo del banner*/
+    background-size: cover;/*La imagen se ajusta para cubrir todo el contenedor, recortando si es necesario*/
+    background-position: center;/*Centra la imagen de fondo (horizontal y vertical) dentro del contenedor*/
+    color: white;/*Color del texto dentro del banner afecta a h1, a*/
+    padding: 2em;/*Espacio alrededor del contenido (arriba/abajo: 4, lados: 2)*/
+    text-align: center;/*Centra el texto horizontalmente*/
+    border-radius: 12px;/*Redondea las esquinas del banner*/
+    overflow: hidden;/*Oculta cualquier contenido o capa que se salga de los bordes redondeados (importante para la capa oscura ::before*/  
+    display: flex;/*Activa Flexbox para organizar los elementos hijos (el título y el botón)*/
+    flex-direction: column;/*Pone los elementos en columna*/
+    align-items: center;/*Centra horizontalmente*/
+    gap: 1em;/*Espacio entre título y botón*/
+  }
+  
+  .banner-galeria::before {/*Diseño de la capa oscura*/
+    content: "";/*Requerido para que el pseudo-elemento ::before funcione*/
+    position: absolute;/*Posiciona este elemento encima de la imagen de fondo pero debajo del contenido*/
+    inset: 0;/*Esto hace que la capa ocupe todo el ancho y alto del banner*/
+    background: rgba(0, 0, 0, 0.5); /*Capa oscura (ajusta opacidad aquí)*/
+    z-index: 0;/*Esta capa se coloca detrás del contenido (h1, botón), pero encima de la imagen*/
+    border-radius: 12px;/*Borde redondeado*/
+  }
+  
+  .banner-galeria > * {
+    position: relative;/*Establece contexto de posición para que el z-index funcione correctamente*/
+    z-index: 1; /*Asegura que el texto esté por encima de la capa oscura */
+  }
+
+  footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 1em 2em;
+    line-height: 1; /* interlineado */
+    color: #444;
+    border-top: 1px solid #ddd;
+    font-family: cursive;
+    font-size: 1em;
+    border-radius: 12px;/*Borde redondeado*/
+  }
+  
+  footer .social-icons {
+    margin-top: 1em;
+  }
+  
+  footer .social-icons i {
+    font-size: 1.4em;
+    margin: 0 0.5em;
+    color: #e91e63;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  footer .social-icons i:hover {
+    transform: scale(1.2);
+    color: #c2185b;
+  }
