@@ -219,5 +219,68 @@
   </footer>
 
   <script src="Java.js"></script>
+
+  
+<!-- LIBRERIA EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- SUSCRIPCION LIBELLA SPA -->
+<script>
+  // Configuracion de EmailJS
+  emailjs.init({
+    publicKey: "1Gbqb3sfLWYUcvHnz"
+  });
+
+  // Formulario y elementos
+  const formularioSuscripcion =
+    document.getElementById("form-suscripcion");
+
+  const mensajeSuscripcion =
+    document.getElementById("mensaje-suscripcion");
+
+  // Cuando el usuario se suscribe
+  formularioSuscripcion.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const correo =
+      document.getElementById("email-suscripcion").value.trim();
+
+    const boton =
+      document.getElementById("btn-suscripcion");
+
+    boton.disabled = true;
+    mensajeSuscripcion.style.color = "#743454";
+    mensajeSuscripcion.textContent = "Enviando correo...";
+
+    try {
+      // Envio automatico del correo de bienvenida
+      await emailjs.send(
+        "service_91qsvjb",
+        "template_5uw9mvm",
+        {
+          email: correo,
+          website_url: window.location.href
+        }
+      );
+
+      mensajeSuscripcion.style.color = "green";
+      mensajeSuscripcion.textContent =
+        "¡Suscripción exitosa! Revisa tu correo de bienvenida.";
+
+      formularioSuscripcion.reset();
+
+    } catch (error) {
+      console.error("Error EmailJS:", error);
+
+      mensajeSuscripcion.style.color = "red";
+      mensajeSuscripcion.textContent =
+        "No se pudo enviar el correo. Intenta nuevamente.";
+
+    } finally {
+      boton.disabled = false;
+    }
+  });
+</script>
+
 </body>
 </html>
