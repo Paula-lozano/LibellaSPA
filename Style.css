@@ -512,3 +512,133 @@ section { scroll-margin-top:95px; }
   #form-suscripcion { width:100%; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; animation:none!important; } }
+
+
+/* ==========================================
+   CORRECCION VISUAL DE SERVICIOS
+   LIBELLA SPA
+   ========================================== */
+
+/* Organizacion de las tarjetas */
+.servicios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  padding: 35px 20px;
+}
+
+/* Tarjetas de los servicios */
+.servicios > a,
+.servicios > div {
+  flex: 1 1 220px;
+  min-width: 0;
+  max-width: 300px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  padding: 25px 18px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(90, 40, 65, 0.12);
+}
+
+/* Botones dentro de las tarjetas */
+.servicios a,
+.servicios button {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 52px;
+  padding: 14px 18px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Evita que los textos se corten */
+.servicios * {
+  word-wrap: break-word;
+}
+
+/* Adaptacion para celulares */
+@media (max-width: 768px) {
+  .servicios {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .servicios > a,
+  .servicios > div {
+    width: 100%;
+    max-width: 360px;
+    flex: 0 1 auto;
+  }
+}
+
+
+/* SERVICIOS - DISEÑO CORREGIDO */
+
+.servicios .servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 25px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.servicios .servicios-grid li {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 0;
+  padding: 18px;
+  background: rgba(255,255,255,0.96);
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.servicios .servicios-grid li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #c05b89;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.servicios .servicios-grid li a:hover {
+  background: #963e68;
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .servicios .servicios-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .servicios .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+}
