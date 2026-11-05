@@ -144,6 +144,50 @@
     "id="lista-opiniones" Se usa para agregar dinámicamente cada comentario enviado. -->
   </section>
 
+  
+  <!-- INICIO: FORMULARIO DE SUSCRIPCION LIBELLA SPA -->
+  <section id="suscripcion" class="suscripcion">
+
+    <h2>¡Únete a Libella Spa! 💅</h2>
+
+    <p>
+      Suscríbete para recibir novedades, tendencias
+      en diseños de uñas y consejos de belleza.
+    </p>
+
+    <!-- Formulario con un unico campo: correo electronico -->
+    <form id="form-suscripcion">
+
+      <input
+        type="email"
+        id="email-suscripcion"
+        name="email"
+        placeholder="Ingresa tu correo electrónico"
+        autocomplete="email"
+        required
+      />
+
+      <button type="submit" id="btn-suscripcion">
+        Quiero suscribirme 💌
+      </button>
+
+    </form>
+
+    <!-- Informacion sobre el consentimiento -->
+    <p class="texto-privacidad">
+      Al suscribirte, aceptas recibir novedades
+      y comunicaciones de Libella Spa por correo.
+      Puedes solicitar tu retiro cuando quieras.
+    </p>
+
+    <!-- Aqui mostraremos el resultado del envio -->
+    <p id="mensaje-suscripcion" role="status"
+       aria-live="polite"></p>
+
+  </section>
+  <!-- FIN: FORMULARIO DE SUSCRIPCION -->
+
+
   <footer class="pie">
       <div class="footer-content">
           <i class="fab fa-instagram"> @ibella.cute</i>
