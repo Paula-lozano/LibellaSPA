@@ -1,35 +1,119 @@
-/* REDISEÑO LIBELLA SPA — inspirado en estructura editorial de landing pages */
-:root{--wine:#672c46;--wine-dark:#3b1b2a;--pink:#f5e4e7;--cream:#fbf8f3;--text:#30242b;--muted:#776b70;--line:#eadfdf;--white:#fff;--accent:#b77c91}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Playfair Display',serif}h1{font-size:clamp(3.1rem,6.3vw,6.8rem);line-height:1.05;letter-spacing:-.045em}h2{font-size:clamp(2.3rem,4.3vw,4.3rem);line-height:1.13;letter-spacing:-.04em}h2 em,h1 em{font-weight:500;color:#ae718a}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}img{max-width:100%;display:block}.header{height:94px;padding:0 clamp(20px,5vw,88px);display:flex;align-items:center;justify-content:space-between;background:#fff;gap:24px}.brand{display:inline-flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:.9;white-space:nowrap}.brand-icon{font-size:30px;color:#b5768b}.brand-light{font-weight:500;color:#b5768b}.brand small{display:block;font:600 8px 'DM Sans',sans-serif;letter-spacing:2.5px;margin-top:7px}.header nav{display:flex;gap:clamp(14px,2.2vw,34px);font-size:13px;font-weight:600}.header nav a:hover,.text-link:hover{color:#b5768b}.btn{display:inline-flex;align-items:center;justify-content:center;gap:24px;border:1px solid var(--wine);border-radius:4px;padding:17px 24px;background:var(--wine);color:white;font-weight:700;font-size:13px;transition:transform .2s,background .2s}.btn:hover{background:var(--wine-dark);transform:translateY(-2px)}.btn-small{padding:14px 19px;white-space:nowrap}.btn-outline{background:transparent;color:var(--wine)}.btn-outline:hover{color:white}.hero{display:grid;grid-template-columns:53% 47%;min-height:650px;background:#f7eef0}.hero-content{padding:clamp(50px,7vw,105px) 6vw;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.eyebrow,.kicker{font-size:11px;letter-spacing:2.8px;font-weight:700;color:#9e6179}.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px}.eyebrow-line{width:34px;height:1px;background:#9e6179}.hero h1{max-width:700px;margin-bottom:28px}.hero p{max-width:470px;color:#6f6268;line-height:1.9;font-size:15px}.hero-actions{display:flex;align-items:center;gap:30px;flex-wrap:wrap;margin-top:22px}.text-link{font-size:13px;font-weight:700;border-bottom:1px solid #aa8995;padding-bottom:7px}.hero-note{margin-top:64px;display:flex;gap:12px;align-items:center;color:#907f84;font-size:12px}.sparkle{font-size:26px;color:#b5768b}.hero-visual{min-height:590px;position:relative;overflow:hidden}.hero-visual>img{width:100%;height:100%;object-fit:cover;filter:saturate(.75)}.hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(41,14,26,.48),transparent 46%)}.photo-caption{position:absolute;bottom:45px;left:42px;color:white;z-index:1;display:grid;gap:9px}.photo-caption span{font-size:11px;letter-spacing:3px}.photo-caption strong{font:italic 27px 'Playfair Display',serif}.hero-floating{position:absolute;top:42px;right:42px;background:#fffaf5;border-radius:50%;width:128px;height:128px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--wine);font-size:29px;z-index:1;text-align:center;transform:rotate(10deg)}.hero-floating span{font-size:9px;letter-spacing:2px;font-weight:700;line-height:1.7}.strip{display:flex;justify-content:space-around;gap:24px;flex-wrap:wrap;background:var(--wine);color:#f8e8ec;padding:20px;font-size:10px;font-weight:700;letter-spacing:2px}.section{padding:110px clamp(22px,7vw,110px)}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:50px;margin-bottom:40px}.section-heading h2{max-width:580px;margin:15px 0 0}.section-heading>p{max-width:330px;color:var(--muted);font-size:14px;line-height:1.8}.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.service-card{padding:36px;background:#fff;border:1px solid var(--line);min-height:325px;display:flex;flex-direction:column;align-items:flex-start}.service-card.featured{background:#f3e1e5}.service-number{font-size:10px;letter-spacing:2px;color:#a4788b;font-weight:700}.service-emoji{font-size:47px;color:#b78396;margin:25px 0 12px}.service-card h3{font-size:29px;margin-bottom:13px}.service-card p{font-size:13px;color:var(--muted);line-height:1.85;max-width:280px}.service-card a{margin-top:auto;font-size:12px;font-weight:700;color:var(--wine);border-bottom:1px solid #b77c91;padding-bottom:7px}.about{display:grid;grid-template-columns:1fr 1fr;background:#f0e5e4}.about-photo{position:relative;min-height:560px}.about-photo img{width:100%;height:100%;object-fit:cover}.about-stamp{position:absolute;right:30px;bottom:30px;background:#fff;padding:18px;font-size:10px;letter-spacing:2px;font-weight:700}.about-content{padding:clamp(45px,7vw,105px);align-self:center}.about-content h2{margin:18px 0 25px}.about-content>p{color:var(--muted);line-height:1.9;font-size:14px}.about-values{display:grid;gap:15px;margin:35px 0}.about-values div{display:flex;gap:20px;border-bottom:1px solid #dbc9cb;padding-bottom:14px;font-size:13px}.about-values strong{color:#a76b84}.booking{display:grid;grid-template-columns:1fr 1.08fr;gap:7vw;background:#fff}.booking-intro{padding-top:45px}.booking-intro h2{margin:18px 0}.booking-intro p{line-height:1.9;color:var(--muted);max-width:410px}.booking-decoration{font-size:140px;color:#f2dfe6;margin-top:30px}.form-panel{padding:42px;background:#fbf6f5;border:1px solid var(--line)}.form-panel h3,.opinion-form h3{font-size:30px;margin-bottom:8px}.form-panel>p{font-size:13px;color:var(--muted);margin-bottom:25px}form label{display:block;font-size:12px;font-weight:700;margin:15px 0 8px}input,select,textarea{width:100%;border:1px solid #e5d9dc;border-radius:3px;background:#fff;padding:14px 13px;color:var(--text);min-width:0;outline-color:#aa728a}input:focus,textarea:focus,select:focus{border-color:#aa728a}.form-two{display:grid;grid-template-columns:1fr 1fr;gap:15px}.full{width:100%;margin-top:24px}.form-panel small{display:block;margin-top:14px;font-size:11px;color:#8c7c82;line-height:1.6}.opinions{background:var(--cream)}.opinions-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px}.quote-card{background:var(--wine);padding:55px;color:white;display:flex;flex-direction:column;justify-content:center;min-height:360px}.quote-mark{font:100px 'Playfair Display',serif;line-height:.7;color:#dfb7c5}.quote-card p{font:italic clamp(23px,3vw,37px) 'Playfair Display',serif;line-height:1.4}.quote-card>span:last-child{font-size:10px;letter-spacing:2px}.opinion-form{padding:40px;background:#fff;border:1px solid var(--line)}.opinion-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:22px}.opinion{padding:22px;background:white;border:1px solid var(--line);overflow-wrap:anywhere}.opinion strong{color:var(--wine)}.opinion p{line-height:1.7;color:var(--muted)}.newsletter{background:#f1dce3;padding:100px 20px;position:relative;text-align:center;overflow:hidden}.newsletter-stars{position:absolute;top:25px;left:0;width:100%;color:#ba879b;letter-spacing:30px}.newsletter-inner{max-width:760px;margin:auto;position:relative}.newsletter h2{margin:20px auto;max-width:680px}.newsletter p{color:#725f69;line-height:1.8;max-width:580px;margin:0 auto 26px}.newsletter form{display:flex;gap:10px;background:white;padding:8px;max-width:580px;margin:auto;border:1px solid #ead1d9}.newsletter input{border:0;flex:1;padding:13px;outline:none}.newsletter button{background:var(--wine);border:0;color:white;padding:15px 20px;font-weight:700;white-space:nowrap;font-size:12px}.newsletter button:disabled{opacity:.6;cursor:wait}.newsletter small{display:block;max-width:550px;margin:18px auto 0;color:#77646c;line-height:1.7;font-size:11px}#mensaje-suscripcion{font-weight:700;font-size:13px;margin:14px auto 0}.footer{display:grid;grid-template-columns:2fr 1fr 1.3fr;gap:40px;background:#301b28;color:#fff;padding:65px 7vw 24px}.footer .brand{margin-bottom:20px}.footer>div:first-child p{font-size:13px;line-height:1.8;color:#cdbcc5;max-width:290px}.footer>div:not(:first-child){display:flex;flex-direction:column;gap:13px;font-size:12px;color:#d4c5cd}.footer strong{font-size:10px;letter-spacing:2px;color:#fff;margin-bottom:10px}.copyright{grid-column:1/-1;border-top:1px solid #59404d;padding-top:24px;font-size:11px;color:#bda9b4}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:1050px){.header nav{display:none}.hero{grid-template-columns:1fr 1fr}.hero-content{padding:55px 5vw}.hero-visual{min-height:540px}.about-content{padding:50px}.booking{gap:35px}}@media(max-width:720px){.header{height:78px}.header .btn-small{font-size:11px;padding:12px}.brand{font-size:23px}.hero{grid-template-columns:1fr}.hero-content{padding:65px 24px}.hero-note{margin-top:36px}.hero-visual{min-height:380px}.section{padding:75px 22px}.section-heading{display:block}.section-heading>p{margin-top:22px}.service-grid,.about,.booking,.opinions-layout{grid-template-columns:1fr}.about-photo{min-height:350px}.about-content{padding:65px 24px}.booking-intro{padding:0}.booking-decoration{display:none}.form-panel,.opinion-form,.quote-card{padding:28px}.newsletter{padding:85px 20px}.newsletter form{flex-direction:column;background:transparent;border:0;padding:0}.newsletter input,.newsletter button{width:100%;min-height:52px}.footer{grid-template-columns:1fr 1fr;gap:30px}.footer>div:first-child{grid-column:1/-1}.photo-caption{left:25px;bottom:25px}}@media(max-width:390px){.header{padding:0 14px}.brand{font-size:20px}.header .btn-small{padding:11px;font-size:10px}.form-two{grid-template-columns:1fr}.footer{grid-template-columns:1fr}.footer>div:first-child{grid-column:auto}}
 
-/* ===== EXPERIENCIA INTERACTIVA ===== */
-:root{--glow:#df9cb8}body{overflow-x:hidden}::selection{background:#e9b3c8;color:#442134}
-.header{position:sticky;top:0;z-index:80;box-shadow:0 4px 22px #421d3010;transition:background .3s,box-shadow .3s}.header.is-scrolled{background:#fff9fcf5;backdrop-filter:blur(16px);box-shadow:0 8px 28px #421d3022}.header nav a{position:relative}.header nav a:after{content:"";position:absolute;bottom:-7px;left:0;width:0;height:2px;background:#b5768b;transition:width .3s}.header nav a:hover:after{width:100%}
-.hero{position:relative;isolation:isolate}.hero-content{position:relative}.hero-content:before{content:"✦";position:absolute;top:6%;right:5%;font-size:75px;color:#eac8d5;opacity:.7;animation:floatStar 6s ease-in-out infinite}.hero h1 em{background:linear-gradient(120deg,#9b4d74,#d98bab,#87405f);background-size:200% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:shimmer 5s linear infinite}.hero-visual img{animation:heroZoom 15s ease-in-out infinite alternate}.hero-floating{animation:floatBadge 5s ease-in-out infinite}.sparkle{display:inline-block;animation:twinkle 2.8s ease-in-out infinite}.strip{overflow:hidden}.strip span{transition:transform .3s}.strip span:hover{transform:translateY(-4px)}
-.btn,.newsletter button{position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,background .3s}.btn:hover,.newsletter button:hover{box-shadow:0 12px 28px #672c4640;transform:translateY(-4px)}.btn:after,.newsletter button:after{content:"";position:absolute;inset:0;transform:translateX(-120%) skewX(-25deg);background:linear-gradient(90deg,transparent,#ffffff45,transparent);transition:transform .65s}.btn:hover:after,.newsletter button:hover:after{transform:translateX(120%) skewX(-25deg)}
-.service-card{position:relative;overflow:hidden;border-radius:18px;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .4s,border-color .3s}.service-card:hover{transform:translateY(-12px);box-shadow:0 25px 50px #672c4622;border-color:#d2a3b6}.service-card:before{content:"";position:absolute;width:190px;height:190px;right:-90px;top:-90px;background:radial-gradient(circle,#e8afc366,transparent 72%);transition:transform .5s}.service-card:hover:before{transform:scale(1.8)}.service-emoji{transition:transform .4s}.service-card:hover .service-emoji{transform:rotate(-15deg) scale(1.2)}
-.about-photo{overflow:hidden}.about-photo img{transition:transform 1.2s}.about-photo:hover img{transform:scale(1.07)}.form-panel,.opinion-form{border-radius:18px;box-shadow:0 15px 50px #672c460b}input,textarea,select{transition:border-color .25s,box-shadow .25s,transform .25s;border-radius:9px}input:focus,textarea:focus,select:focus{box-shadow:0 0 0 4px #e9b3c855;transform:translateY(-1px)}
-.newsletter{background:radial-gradient(circle at 14% 22%,#fff7f7 0,transparent 32%),radial-gradient(circle at 90% 78%,#e4b7cb 0,transparent 36%),linear-gradient(130deg,#f7e3eb,#e9c3d3);min-height:510px;display:flex;align-items:center}.newsletter:before,.newsletter:after{content:"✦";position:absolute;font-size:clamp(100px,17vw,260px);color:#ffffff6e;pointer-events:none;animation:floatStar 9s ease-in-out infinite}.newsletter:before{top:10%;left:-5%}.newsletter:after{bottom:-15%;right:-4%;animation-delay:-4s}.newsletter-inner{z-index:1}.newsletter h2 em{color:#9e416b}.newsletter form{border-radius:60px;padding:8px;box-shadow:0 18px 40px #672c4622;transition:transform .3s,box-shadow .3s}.newsletter form:focus-within{transform:translateY(-4px);box-shadow:0 22px 50px #672c4633}.newsletter input{border-radius:50px}.newsletter button{border-radius:50px;padding:17px 28px;font-size:13px}.newsletter-stars{animation:twinkle 3.5s infinite}.newsletter-success{animation:popIn .5s both}.newsletter button:disabled{opacity:.65;cursor:wait}.newsletter-benefits{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:20px auto 28px;color:#733c57;font-size:12px;font-weight:700}.newsletter-benefits span{background:#ffffff88;border:1px solid #ffffffb8;border-radius:50px;padding:10px 14px}
-.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}.reveal.visible{opacity:1;transform:none}.reveal-delay-1{transition-delay:.12s}.reveal-delay-2{transition-delay:.24s}.scroll-progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#d985ac,#702f50);z-index:200;pointer-events:none}.back-top{position:fixed;bottom:25px;right:25px;z-index:70;border:0;background:#672c46;color:white;border-radius:50%;width:50px;height:50px;box-shadow:0 8px 28px #672c4644;opacity:0;transform:translateY(18px);pointer-events:none;transition:opacity .3s,transform .3s}.back-top.show{opacity:1;transform:none;pointer-events:auto}.back-top:hover{background:#8b4767}.float-heart{position:absolute;bottom:-30px;font-size:20px;opacity:0;pointer-events:none;animation:heartRise var(--dur,5s) linear forwards}
-@keyframes floatBadge{0%,100%{transform:translateY(0) rotate(10deg)}50%{transform:translateY(-18px) rotate(2deg)}}@keyframes floatStar{0%,100%{transform:translateY(0) rotate(-12deg)}50%{transform:translateY(-22px) rotate(12deg)}}@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.08)}}@keyframes shimmer{to{background-position:200% center}}@keyframes twinkle{0%,100%{opacity:.45;transform:scale(.95)}50%{opacity:1;transform:scale(1.1)}}@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}@keyframes heartRise{0%{opacity:0;transform:translateY(0) rotate(-15deg)}15%{opacity:.7}85%{opacity:.7}100%{opacity:0;transform:translateY(-460px) rotate(20deg)}}
-@media(max-width:720px){.newsletter form{border-radius:16px;box-shadow:none}.newsletter input,.newsletter button{border-radius:14px}.newsletter-benefits{gap:8px}.newsletter-benefits span{font-size:11px}.header{position:sticky}.hero-content:before{font-size:40px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+/* ==========================================
+   LIBELLA SPA - AJUSTES FINALES
+   DISEÑO INTERACTIVO Y EMAILJS
+========================================== */
 
-
-/* =====================================
-   ANIMACIONES INTERACTIVAS - LIBELLA SPA
-===================================== */
-
-html {
-  scroll-behavior: smooth;
+/* Encabezado */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: #ffffff;
+  transition: background 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
-/* Aparicion suave de secciones */
+.header.is-scrolled {
+  background: rgba(255, 249, 252, 0.97);
+  box-shadow: 0 8px 28px rgba(66, 29, 48, 0.15);
+}
+
+/* Suscripcion destacada */
+.newsletter {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 24px;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      #fff7f7,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      #e4b7cb,
+      transparent 40%
+    ),
+    linear-gradient(
+      130deg,
+      #f7e3eb,
+      #e9c3d3
+    );
+}
+
+.newsletter-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.newsletter h2 {
+  color: #672c46;
+}
+
+.newsletter h2 em {
+  color: #a3436a;
+}
+
+/* Formulario EmailJS */
+.newsletter form {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 50px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(103, 44, 70, 0.16);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.newsletter form:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(103, 44, 70, 0.25);
+}
+
+.newsletter input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 20px;
+  background: #ffffff;
+}
+
+.newsletter button {
+  border: none;
+  border-radius: 50px;
+  padding: 17px 25px;
+  background: #672c46;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.newsletter button:hover {
+  background: #8b4767;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(103, 44, 70, 0.3);
+}
+
+/* Animacion del mensaje de bienvenida */
+.newsletter-success {
+  font-weight: bold;
+  animation: popIn 0.5s ease both;
+}
+
+/* Animacion de las secciones */
 .reveal {
   opacity: 0;
   transform: translateY(35px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+  transition: opacity 0.8s ease,
+              transform 0.8s ease;
 }
 
 .reveal.visible {
@@ -37,98 +121,52 @@ html {
   transform: translateY(0);
 }
 
-.reveal-delay-1 {
-  transition-delay: 0.15s;
-}
-
-.reveal-delay-2 {
-  transition-delay: 0.3s;
-}
-
 /* Barra de progreso */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4px;
   width: 0;
-  background: #c85b89;
+  height: 4px;
   z-index: 9999;
+  background: linear-gradient(
+    90deg,
+    #d985ac,
+    #702f50
+  );
 }
 
-/* Encabezado al desplazarse */
-.header {
-  transition:
-    background 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.header.is-scrolled {
-  background: rgba(255, 248, 250, 0.97);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-/* Boton para volver arriba */
-.back-top {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(15px);
-  transition: all 0.3s ease;
-}
-
-.back-top.show {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Corazones flotantes */
-.newsletter {
-  position: relative;
-  overflow: hidden;
-}
-
+/* Corazones de suscripcion */
 .float-heart {
   position: absolute;
-  bottom: 15%;
+  bottom: 0;
   z-index: 5;
-  color: #ffd1e2;
+  color: #ffffff;
   font-size: 24px;
   pointer-events: none;
-  animation: flotarCorazon var(--dur, 4s) ease-out forwards;
+  animation: heartRise var(--dur, 4s)
+             ease-out forwards;
 }
 
-@keyframes flotarCorazon {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0.5);
+/* Celulares */
+@media (max-width: 720px) {
+  .newsletter {
+    padding: 85px 20px;
   }
 
-  20% {
-    opacity: 1;
+  .newsletter form {
+    flex-direction: column;
+    padding: 0;
+    background: transparent;
+    border-radius: 16px;
+    box-shadow: none;
   }
 
-  100% {
-    opacity: 0;
-    transform: translateY(-350px) scale(1.5) rotate(25deg);
-  }
-}
-
-/* Confirmacion de suscripcion */
-.newsletter-success {
-  font-weight: bold;
-  animation: aparecerMensaje 0.6s ease;
-}
-
-@keyframes aparecerMensaje {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
+  .newsletter input,
+  .newsletter button {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 14px;
   }
 }
 
@@ -145,7 +183,6 @@ html {
   }
 
   .float-heart {
-    animation: none;
     display: none;
   }
 }
