@@ -464,3 +464,51 @@ body {
 }
 
 }
+
+/* =======================================================
+   RENOVACION VISUAL LIBELLA SPA - NOVIEMBRE 2026
+   Solo estilos: no altera reservas, opiniones ni JavaScript.
+   ======================================================= */
+:root { --rosa:#c05b89; --rosa-oscuro:#823c61; --rosa-claro:#fff1f6; --tinta:#493344; --borde:#f0d9e3; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:100px; }
+body { font-family:'Segoe UI',Arial,sans-serif; color:var(--tinta); background:#fffafd; line-height:1.65; }
+h1,h2,h3 { line-height:1.25; letter-spacing:-.025em; }
+section { scroll-margin-top:95px; }
+.encabezado,header.encabezado { position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:12px clamp(18px,5vw,72px); background:rgba(255,248,251,.96); border-bottom:1px solid var(--borde); box-shadow:0 5px 22px rgba(111,41,75,.08); backdrop-filter:blur(12px); }
+.logo-enc { width:72px; height:72px; object-fit:cover; border-radius:50%; border:3px solid #fff; box-shadow:0 4px 16px rgba(145,63,105,.15); }
+.encabezado nav ul { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:clamp(10px,2vw,28px); margin:0; padding:0; }
+.encabezado nav a { display:inline-block; padding:10px 13px; border-radius:999px; font-family:'Segoe UI',Arial,sans-serif; font-size:.94rem; font-weight:600; color:var(--rosa-oscuro); transition:background .2s,color .2s,transform .2s; }
+.encabezado nav a:hover,.encabezado nav a:focus-visible { background:#fbe3ed; color:#a72e67; transform:translateY(-1px); }
+.hero { padding:clamp(64px,9vw,120px) 22px; background:linear-gradient(120deg,rgba(255,245,249,.94),rgba(251,214,230,.88)),url('Imagenes/FondoBanner.jpg') center/cover; text-align:center; }
+.hero h1,.hero h2 { font-family:'Georgia',serif; color:#763a5b; font-size:clamp(2.2rem,5vw,4.2rem); max-width:850px; margin:0 auto 22px; }
+.hero p { max-width:700px; margin:0 auto 25px; font-size:1.08rem; }
+.hero a,.hero button,.servicios a,.citas button,#form-cita button,#form-opinion button,#btn-suscripcion { border:0; border-radius:999px; padding:13px 26px; background:var(--rosa); color:white; font-family:'Segoe UI',Arial,sans-serif; font-size:1rem; font-weight:700; text-decoration:none; box-shadow:0 8px 18px rgba(192,91,137,.18); transition:transform .2s,box-shadow .2s,background .2s; cursor:pointer; }
+.hero a:hover,.hero button:hover,.servicios a:hover,.citas button:hover,#form-cita button:hover,#form-opinion button:hover,#btn-suscripcion:hover { background:var(--rosa-oscuro); color:#fff; transform:translateY(-2px); box-shadow:0 12px 25px rgba(130,60,97,.24); }
+.mision-vision,.servicios,.citas,#opiniones,.suscripcion { padding-top:clamp(55px,7vw,85px); padding-bottom:clamp(55px,7vw,85px); }
+.mision-vision h2,.servicios h2,.citas h2,#opiniones h2,.suscripcion h2 { font-family:Georgia,serif; color:#813c61; font-size:clamp(1.9rem,3.5vw,2.8rem); }
+.card,.servicios-grid li,.opinion { border-radius:20px; box-shadow:0 10px 32px rgba(93,41,66,.10); }
+.servicios-grid { gap:24px; }
+.servicios-grid li { background:rgba(255,255,255,.95); border:1px solid var(--borde); padding:22px; transition:transform .2s,box-shadow .2s; }
+.servicios-grid li:hover { transform:translateY(-5px); box-shadow:0 16px 38px rgba(93,41,66,.15); }
+#form-cita,#form-opinion { border-radius:22px; box-shadow:0 12px 36px rgba(93,41,66,.12); }
+#form-cita input,#form-cita select,#form-opinion input,#form-opinion textarea,#email-suscripcion { max-width:100%; border:1.5px solid #eac7d8; border-radius:12px; background:#fff; font-family:'Segoe UI',Arial,sans-serif; font-size:1rem; padding:13px 15px; transition:border-color .2s,box-shadow .2s; }
+#form-cita input:focus,#form-cita select:focus,#form-opinion input:focus,#form-opinion textarea:focus,#email-suscripcion:focus { outline:0; border-color:var(--rosa); box-shadow:0 0 0 3px rgba(192,91,137,.14); }
+.suscripcion { margin:0; background:linear-gradient(135deg,#fff3f8,#fce3ed); border-top:1px solid var(--borde); }
+#form-suscripcion { width:min(100%,460px); }
+#email-suscripcion { width:100%; }
+.suscripcion .texto-privacidad { max-width:520px; }
+.pie { background:#69374f; color:#fff; padding:36px 20px; }
+.pie a,.pie i { color:inherit; }
+@media (max-width:768px) {
+  .encabezado,header.encabezado { position:relative; flex-direction:column; padding:14px; gap:8px; }
+  .logo-enc { width:64px; height:64px; }
+  .encabezado nav,.encabezado nav ul { width:100%; }
+  .encabezado nav ul { gap:4px 8px; justify-content:center; }
+  .encabezado nav a { padding:8px 10px; font-size:.85rem; }
+  .hero { padding:65px 18px; }
+  .servicios-grid { gap:15px; }
+  .mision-vision,.servicios,.citas,#opiniones,.suscripcion { padding-left:16px; padding-right:16px; }
+  #form-suscripcion { width:100%; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; animation:none!important; } }
