@@ -1,0 +1,188 @@
+
+/* ==========================================
+   LIBELLA SPA - AJUSTES FINALES
+   DISEÑO INTERACTIVO Y EMAILJS
+========================================== */
+
+/* Encabezado */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: #ffffff;
+  transition: background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.header.is-scrolled {
+  background: rgba(255, 249, 252, 0.97);
+  box-shadow: 0 8px 28px rgba(66, 29, 48, 0.15);
+}
+
+/* Suscripcion destacada */
+.newsletter {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 24px;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      #fff7f7,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      #e4b7cb,
+      transparent 40%
+    ),
+    linear-gradient(
+      130deg,
+      #f7e3eb,
+      #e9c3d3
+    );
+}
+
+.newsletter-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.newsletter h2 {
+  color: #672c46;
+}
+
+.newsletter h2 em {
+  color: #a3436a;
+}
+
+/* Formulario EmailJS */
+.newsletter form {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 50px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(103, 44, 70, 0.16);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.newsletter form:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(103, 44, 70, 0.25);
+}
+
+.newsletter input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 20px;
+  background: #ffffff;
+}
+
+.newsletter button {
+  border: none;
+  border-radius: 50px;
+  padding: 17px 25px;
+  background: #672c46;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s ease,
+              background 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.newsletter button:hover {
+  background: #8b4767;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(103, 44, 70, 0.3);
+}
+
+/* Animacion del mensaje de bienvenida */
+.newsletter-success {
+  font-weight: bold;
+  animation: popIn 0.5s ease both;
+}
+
+/* Animacion de las secciones */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease,
+              transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Barra de progreso */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  z-index: 9999;
+  background: linear-gradient(
+    90deg,
+    #d985ac,
+    #702f50
+  );
+}
+
+/* Corazones de suscripcion */
+.float-heart {
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+  color: #ffffff;
+  font-size: 24px;
+  pointer-events: none;
+  animation: heartRise var(--dur, 4s)
+             ease-out forwards;
+}
+
+/* Celulares */
+@media (max-width: 720px) {
+  .newsletter {
+    padding: 85px 20px;
+  }
+
+  .newsletter form {
+    flex-direction: column;
+    padding: 0;
+    background: transparent;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+
+  .newsletter input,
+  .newsletter button {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 14px;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .float-heart {
+    display: none;
+  }
+}

@@ -1,0 +1,644 @@
+body {
+    font-family: cursive; /*Texto*/
+    margin: 0; /*Espacio de izquierda y derecha*/
+    background: #ffffff;/*Color de fondo*/
+    color: #580451;/*Color de letra*/
+  }
+  
+  header {
+    background: #f8c8dc;/*Fondo del contenedor*/
+    display: flex;/*Bloque Fexible*/
+    justify-content: space-between;/*Distribuye el espacio entre los elementos dejando el primero alineado a la izquierda(Libella) y el último a la derecha(menu)*/
+    align-items: center;/*Alinea los elementos verticalmente al centro dentro del contenedor*/
+  }
+  
+  nav ul {/*Diseño al menu de navegacion*/
+    list-style: none; /*remueve los puntos o números que normalmente aparecen antes de cada ítem*/
+    display: flex;/*Convierte el contenedor de la lista (ul) en un Flexbox, lo que permite alinear los ítems (li) en una sola fila horizontal, en lugar de la columna vertical por defecto*/
+    gap: 7em;/*Espacio uniforme de 1em entre cada ítem hijo (li)*/
+  }
+  
+  nav a { /*Diseño a la etiqueta A*/
+    text-decoration: none;/*Elimina el subrayado predeterminado de los enlaces*/
+    color: #5a053e;/*Color de tectp*/
+    font-weight: bold;/*Negrilla*/
+  }
+  
+  .hero {/*Diseño a la clase hero*/
+    text-align: center;/*Texto alineado al centro*/
+    padding: 4em 2em;/*Espacio arriba y abajo del contenedor, izquierda y derecha del borde*/
+    background: linear-gradient(to right, #ffe0f0, #fbd0d8);/*Degradado en linea recta de izquierda a derecha*/
+  }
+  
+  .hero h2 {/*Diseño del texto*/
+    font-size: 3em;/*Tamaño del texto*/
+  }
+  
+  button {/*Diseño del boton*/
+    background: #e91e63;/*Color de fondo*/
+    color: white;/*Color de texto*/
+    padding: 0.7em 1.5em;/*Arriba y abajo del boton, izquierda y derecha del tamaño*/
+    border: none;/*Quita el borde exterior*/
+    border-radius: 8px;/*Borde redondeado*/
+    cursor: pointer; /*Cambia de cursor a mano el mouse*/
+  }
+  
+  button:hover {
+    background: #c2185b;/* Un rosado un poco más oscuro */
+    transform: scale(1.05); /* Ligeramente más grande */
+    transition: all 0.2s ease;
+    /*all: Indica que la transición debe aplicarse a todas las propiedades CSS que cambien (por ejemplo: background, color, transform, etc.).
+    También podrías especificar solo una propiedad, como background, transform, etc.
+    Ejemplo: transition: background 0.2s ease;
+
+    Duración de la transición: 0.2 segundos (200 milisegundos).
+
+    ease
+    Tipo de aceleración de la animación:
+    ease significa que empieza lenta, acelera en el medio y termina lenta.
+    Otras opciones: linear, ease-in, ease-out, ease-in-out.*/
+  }
+
+  .mision-vision {
+    background-image: url('Imagenes/FondoSectionMision-Vision.jpg');/*Imagen de fondo*/
+    background-size: cover;/*Escala la imagen para cubrir toda la sección*/
+    background-position: center;/*Centra la imagen horizontal y verticalmente*/
+    background-repeat: no-repeat;/*Evita que se repita la imagen*/
+    padding: 10px 2em;/*Espacio alrededor del contenido (arriba/abajo: 10px, lados: 2em)*/
+    text-align: center;/*Centra el texto horizontalmente*/
+    position: relative;/*Asegura que estos elementos puedan estar por encima del pseudo-elemento*/
+    color: white;/* Asegura que el texto se vea encima del fondo */
+  }
+  .mision-vision::before {/*Es un bloque invisible que se puede usar como fondo, sombra, marco, etc*/
+    content: "";/* Obligatorio para que el pseudo-elemento ::before aparezca*/
+    position: absolute;/* Posiciona el pseudo-elemento de forma absoluta dentro de su contenedor .mision-vision*/
+    inset: 0;/*Hace que el elemento cubra toda el área de su contenedor.*/
+    background: rgba(0, 0, 0, 0.4); /*Efecto de un vidrio oscuro encima de la imagen.*/
+    z-index: 0; /*Coloca esta capa por detrás del contenido real de la sección*/
+  }
+  
+  .mision-vision > * {/*Esta regla aplica a todos los elementos hijos directos de .mision-vision*/
+    position: relative;/*Asegura que estos elementos puedan estar por encima del pseudo-elemento*/
+    z-index: 1;/*Coloca el contenido por encima de la capa oscura*/
+  }
+
+  .mision-vision.h1{
+    font-size: 10px;/*Tamaño del texto*/
+  }
+  
+  .card-container {
+    display: flex;/* Usa Flexbox para organizar las tarjetas en una fila */
+    justify-content: center;/*Centra las tarjetas horizontalmente*/
+    gap: 6em; /*Separación entre tarjetas */
+    flex-wrap: wrap;
+    perspective: 1000px;
+    padding-top: 0;
+    padding-bottom: 2em;
+  }
+  
+  .card {
+    width: 280px;/*Ancho fijo de la tarjeta*/
+    height: 200px;/*Alto fijo de la tarjeta*/
+    position: relative;/* Necesario para posicionar las caras (front y back) absolutamente dentro */
+    transform-style: preserve-3d;
+    transition: transform 0.6s;/* Animación suave cuando se rota la tarjeta */
+    cursor: pointer;/* Cambia el cursor al pasar encima (mano) */
+    margin: 2em; /* espacio alrededor de cada tarjeta */
+  }
+  
+  .card:hover {
+    transform: rotateY(180deg);/* Rota la tarjeta 180 grados en el eje Y al pasar el mouse */
+  }
+  
+  .card .front,
+  .card .back {
+    position: absolute;/* Se colocan una sobre otra (superpuestas) */
+    width: 100%;/* Ocupan todo el ancho de la tarjeta */
+    height: 100%;/* Ocupan todo el alto de la tarjeta */
+    backface-visibility: hidden;/* Oculta la cara trasera cuando no está de frente */
+    border-radius: 10px;/* Bordes redondeados */
+    padding: 1.5em;/* Espaciado interno */
+    display: flex;/* Flexbox para centrar el contenido */
+    align-items: center;/* Centra verticalmente */
+    justify-content: center;/* Centra horizontalmente */
+    color: white;/* Color del texto en ambas caras */
+  }
+  
+  .card .front {
+    background: #d84e7c;/* Fondo para el frente */
+  } 
+  
+  .card .back {
+    background: #880e4f;/* Fondo para la parte de atrás */
+    transform: rotateY(180deg);
+    /*Transform: Permite poner tranformaciones visuales
+    moverlo (translate)
+    escalarlo (scale)
+    rotarlo (rotate)
+    inclinarlo (skew)
+    Gira 180 grados*/
+  }
+  
+  .servicios-grid {/*Diseño del menu de servicios*/
+    display: grid;/*Diseño de menu horizontal*/
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    /*Esta línea define cómo se organizan las columnas:
+    repeat:Repite una estructura de columna automáticamente.
+    auto-fit: El número de columnas se ajusta automáticamente al ancho disponible del contenedor (ideal para diseño responsivo).
+    minmax(120px, 1fr): Cada columna tiene como mínimo 120px y como máximo una fracción (1fr) del espacio disponible.
+    Esto asegura que los ítems no sean demasiado pequeños ni demasiado grandes, y que se adapten a pantallas pequeñas o grandes.*/
+    gap: 1em;/*Espacio uniforme de 1em entre cada ítem hijo (li)*/
+    padding: 2em;/*Espacio arriba y abajo*/
+    text-align: center;/*Texto alineado al centro*/
+    list-style: none;
+  }
+
+  .servicios-grid a {
+    text-decoration: none;/*Quita el subrayado de los enlaces*/
+    color: inherit; /* opcional: usa el color del texto padre */
+  }
+
+  .servicios {
+    position: relative;
+    background-image: url('Imagenes/FondoSectionServicio.jpg'); /*Ruta de la imagen*/
+    background-size: cover;/*La imagen se escala automáticamente para cubrir toda la sección, sin dejar espacios vacíos*/
+    background-position: center;/*Centra la imagen dentro del fondo*/
+    background-repeat: no-repeat;/*Evita que la imagen se repita si no llena completamente el contenedor*/
+    padding: 4em 2em;/*arriba y abajo, espacio vertical y a los lados, espacio horizontal*/
+    color: white;/*Color del texto*/
+    text-align: center;/*Alinea el texto al centro*/
+  }
+  
+  .servicios::before {/*Pone una capa oscura, sin dañar la imagen*/
+    content: "";/*Sin esta línea el ::before no aparecería crea un bloque visual vacío que puedes usar como capa.*/
+    position: absolute;/*Es necesario para que el pseudo-elemento se pueda expandir y colocar encima de su contenedor, ".servicios" debe tener position: relative; para que esto funcione correctamente*/
+    inset: 0;/*Esto hace que el pseudo-elemento cubra todo el área del contenedor ".servicios"*/
+    background: rgba(0, 0, 0, 0.4); /* filtro negro transparente */
+    z-index: 0;/*Coloca este pseudo-elemento detrás del contenido que está en la misma sección.
+    Para que el texto se muestre por encima, ese texto (u otros elementos) deben tener z-index: 1 o más, y position: relative o absolute.*/
+  }
+  
+  .servicios > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  form {
+    display: flex;/*Contenedor flexible*/
+    flex-direction: column;/*Los elementos se organizan en columna y no el fila*/
+    gap: 1em;/*Espacio entre cada elemento*/
+    max-width: 300px;/*Maximo del ancho en de 300PX*/
+    margin: auto;/*Centra el formulario horizontalmente dentro de su contenedor*/
+    padding: 1em;/*Agrega espacio interno dentro del formulario (alrededor de su contenido)*/
+  }
+
+  #citas {
+    background-image: url('Imagenes/FondoSectionReserva.jpg'); /* tu imagen de fondo */
+    text-align: center;/*Texto centrado*/
+    color: #5a053e;/*Color de texto*/
+  }
+
+
+
+  form select,/*Diseño para el selec del formulario*/
+  form input[type="tel"] {/*Aplica al campo de teléfono.*/
+  padding: 0.5em;/*Espacio alrededor del contenido (arriba/abajo, lados)*/
+  border: 1px solid #ccc;/*Borde exterior*/
+  border-radius: 5px; /*Borde redondeado*/
+}
+
+
+#opiniones {/*Diseño del contenedor*/
+  background: #fce4ec;/*Color de fondo*/
+  padding: 2em;/*Espacio interno del contenido (arriba/abajo, lados)*/
+  text-align: center;/*Texto centrado*/
+}
+
+#form-opinion {/*Diseño del formulario*/
+  display: flex;/*Contenedor flexible*/
+  flex-direction: column;/*Elementos organizados en columna*/
+  gap: 1em;/*Espacio entre lineado*/
+  max-width: 400px;/*Altura maxima*/
+  margin: auto;
+  /*
+  margin-top (arriba)
+  margin-right (derecha)
+  margin-bottom (abajo)
+  margin-left (izquierda)
+  */
+}
+
+#form-opinion input,
+#form-opinion textarea {
+  padding: 0.7em;/*Altura del interior*/
+  border-radius: 8px;/*Borde redondeado*/
+  border: 1px solid #ccc;/*Borde exterior de los campos*/
+  font-family: cursive; /*Texto*/
+}
+
+#lista-opiniones {/*Diseño para el listado de opiniones*/
+  margin-top: 2em;/*Espacio parte superior de la lista de opiniones*/
+  text-align: left;/*Alinea el texto a la izquierda*/
+  max-width: 600px;/*El elemento no crecerá más allá de 600px de ancho*/
+  margin-inline: auto;/*margin-inline controla los márgenes izquierdo y derecho, Le dice al navegador que calcule automáticamente los márgenes para centrar horizontalmente*/
+}
+
+.opinion {/*Diseño para los bloques de opiniones*/
+  background: #ffffff;/*Fondo*/
+  border: 1px solid #ccc;/*Borde exterior*/
+  padding: 0.5%;/*Altura del interior*/
+  border-radius: 10px;/*Borde redondeado*/
+  margin-bottom: 1em;/*Espacio en la parte inferior del contenedor*/
+}
+
+
+/* Estilo común para secciones con fondo */
+#citas, #opiniones {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0.5em 2em;/*Ancho y largo del contenedor*/
+  color: #5a053e;/*Color de los titulos*/
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Capa oscura encima del fondo */
+#citas::before, #opiniones::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(160, 155, 155, 0.5); /* Capa semitransparente negra */
+  z-index: 0;
+}
+
+/* Contenido encima de la capa */
+#citas > *, #opiniones > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mejora en formularios o texto para que sea legible */
+#citas form,
+#opiniones form,
+#opiniones #lista-opiniones {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  padding: 1em;
+  border-radius: 12px;
+  margin-top: 2em;
+}
+
+#opiniones {
+  background-image: url('Imagenes/FondoSectionOpiniones.jpg'); /* tu imagen de fondo */
+}
+
+/* Encabezado con logo alineado a la izquierda */
+.encabezado {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 3em;
+  background-color: #fff;
+}
+
+/* Pie de página */
+.pie {
+  background-color: #ffffff;
+  padding: 2em 1em;
+  border-top: 1px solid #ddd;
+  font-family: cursive !important;
+  font-size: 1em;
+  color: #580451;
+}
+
+/* Contenedor del contenido del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+/* Estilo común del logo */
+.logo-imagen {
+  max-width: 100px;
+  height: auto;
+}
+
+.logo-enc{
+  max-width: 300px;     /* Controla el tamaño visible */
+  height: auto;         /* Mantiene la proporción original */
+  display: block;       /* Elimina espacio extra debajo */
+  margin: 0 auto;       /* Centra horizontalmente */
+}
+@media (max-width: 768px) {
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    text-align: center;
+  }
+
+  .logo-enc {
+    max-width: 200px;
+    margin-bottom: 1em;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 1em;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav li {
+    margin: 0;
+  }
+
+  nav a {
+    font-size: 1.2em;
+  }
+
+  
+/* =========================================
+   FORMULARIO DE SUSCRIPCION - LIBELLA SPA
+   ========================================= */
+
+/* Contenedor principal */
+.suscripcion {
+  background-color: #fff0f6;
+  padding: 50px 20px;
+  text-align: center;
+  border-top: 3px solid #f7c6dc;
+}
+
+/* Titulo */
+.suscripcion h2 {
+  color: #743454;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+/* Descripcion */
+.suscripcion > p {
+  color: #743454;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Formulario */
+#form-suscripcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 25px auto;
+  max-width: 450px;
+}
+
+/* Campo de correo */
+#email-suscripcion {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 2px solid #e7b3cc;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: white;
+}
+
+/* Campo seleccionado */
+#email-suscripcion:focus {
+  outline: none;
+  border-color: #b54f83;
+}
+
+/* Boton de suscripcion */
+#btn-suscripcion {
+  background-color: #b54f83;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Efecto al pasar el mouse */
+#btn-suscripcion:hover {
+  background-color: #743454;
+}
+
+/* Texto de privacidad */
+.suscripcion .texto-privacidad {
+  font-size: 12px;
+  color: #805a70;
+  max-width: 450px;
+  margin: 15px auto;
+}
+
+/* Mensaje de confirmacion */
+#mensaje-suscripcion {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Adaptacion a celulares */
+@media (max-width: 600px) {
+  .suscripcion h2 {
+    font-size: 24px;
+  }
+
+  #form-suscripcion {
+    width: 100%;
+  }
+
+  #btn-suscripcion {
+    width: 100%;
+  }
+}
+
+}
+
+/* =======================================================
+   RENOVACION VISUAL LIBELLA SPA - NOVIEMBRE 2026
+   Solo estilos: no altera reservas, opiniones ni JavaScript.
+   ======================================================= */
+:root { --rosa:#c05b89; --rosa-oscuro:#823c61; --rosa-claro:#fff1f6; --tinta:#493344; --borde:#f0d9e3; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:100px; }
+body { font-family:'Segoe UI',Arial,sans-serif; color:var(--tinta); background:#fffafd; line-height:1.65; }
+h1,h2,h3 { line-height:1.25; letter-spacing:-.025em; }
+section { scroll-margin-top:95px; }
+.encabezado,header.encabezado { position:sticky; top:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:12px clamp(18px,5vw,72px); background:rgba(255,248,251,.96); border-bottom:1px solid var(--borde); box-shadow:0 5px 22px rgba(111,41,75,.08); backdrop-filter:blur(12px); }
+.logo-enc { width:72px; height:72px; object-fit:cover; border-radius:50%; border:3px solid #fff; box-shadow:0 4px 16px rgba(145,63,105,.15); }
+.encabezado nav ul { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:clamp(10px,2vw,28px); margin:0; padding:0; }
+.encabezado nav a { display:inline-block; padding:10px 13px; border-radius:999px; font-family:'Segoe UI',Arial,sans-serif; font-size:.94rem; font-weight:600; color:var(--rosa-oscuro); transition:background .2s,color .2s,transform .2s; }
+.encabezado nav a:hover,.encabezado nav a:focus-visible { background:#fbe3ed; color:#a72e67; transform:translateY(-1px); }
+.hero { padding:clamp(64px,9vw,120px) 22px; background:linear-gradient(120deg,rgba(255,245,249,.94),rgba(251,214,230,.88)),url('Imagenes/FondoBanner.jpg') center/cover; text-align:center; }
+.hero h1,.hero h2 { font-family:'Georgia',serif; color:#763a5b; font-size:clamp(2.2rem,5vw,4.2rem); max-width:850px; margin:0 auto 22px; }
+.hero p { max-width:700px; margin:0 auto 25px; font-size:1.08rem; }
+.hero a,.hero button,.servicios a,.citas button,#form-cita button,#form-opinion button,#btn-suscripcion { border:0; border-radius:999px; padding:13px 26px; background:var(--rosa); color:white; font-family:'Segoe UI',Arial,sans-serif; font-size:1rem; font-weight:700; text-decoration:none; box-shadow:0 8px 18px rgba(192,91,137,.18); transition:transform .2s,box-shadow .2s,background .2s; cursor:pointer; }
+.hero a:hover,.hero button:hover,.servicios a:hover,.citas button:hover,#form-cita button:hover,#form-opinion button:hover,#btn-suscripcion:hover { background:var(--rosa-oscuro); color:#fff; transform:translateY(-2px); box-shadow:0 12px 25px rgba(130,60,97,.24); }
+.mision-vision,.servicios,.citas,#opiniones,.suscripcion { padding-top:clamp(55px,7vw,85px); padding-bottom:clamp(55px,7vw,85px); }
+.mision-vision h2,.servicios h2,.citas h2,#opiniones h2,.suscripcion h2 { font-family:Georgia,serif; color:#813c61; font-size:clamp(1.9rem,3.5vw,2.8rem); }
+.card,.servicios-grid li,.opinion { border-radius:20px; box-shadow:0 10px 32px rgba(93,41,66,.10); }
+.servicios-grid { gap:24px; }
+.servicios-grid li { background:rgba(255,255,255,.95); border:1px solid var(--borde); padding:22px; transition:transform .2s,box-shadow .2s; }
+.servicios-grid li:hover { transform:translateY(-5px); box-shadow:0 16px 38px rgba(93,41,66,.15); }
+#form-cita,#form-opinion { border-radius:22px; box-shadow:0 12px 36px rgba(93,41,66,.12); }
+#form-cita input,#form-cita select,#form-opinion input,#form-opinion textarea,#email-suscripcion { max-width:100%; border:1.5px solid #eac7d8; border-radius:12px; background:#fff; font-family:'Segoe UI',Arial,sans-serif; font-size:1rem; padding:13px 15px; transition:border-color .2s,box-shadow .2s; }
+#form-cita input:focus,#form-cita select:focus,#form-opinion input:focus,#form-opinion textarea:focus,#email-suscripcion:focus { outline:0; border-color:var(--rosa); box-shadow:0 0 0 3px rgba(192,91,137,.14); }
+.suscripcion { margin:0; background:linear-gradient(135deg,#fff3f8,#fce3ed); border-top:1px solid var(--borde); }
+#form-suscripcion { width:min(100%,460px); }
+#email-suscripcion { width:100%; }
+.suscripcion .texto-privacidad { max-width:520px; }
+.pie { background:#69374f; color:#fff; padding:36px 20px; }
+.pie a,.pie i { color:inherit; }
+@media (max-width:768px) {
+  .encabezado,header.encabezado { position:relative; flex-direction:column; padding:14px; gap:8px; }
+  .logo-enc { width:64px; height:64px; }
+  .encabezado nav,.encabezado nav ul { width:100%; }
+  .encabezado nav ul { gap:4px 8px; justify-content:center; }
+  .encabezado nav a { padding:8px 10px; font-size:.85rem; }
+  .hero { padding:65px 18px; }
+  .servicios-grid { gap:15px; }
+  .mision-vision,.servicios,.citas,#opiniones,.suscripcion { padding-left:16px; padding-right:16px; }
+  #form-suscripcion { width:100%; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; animation:none!important; } }
+
+
+/* ==========================================
+   CORRECCION VISUAL DE SERVICIOS
+   LIBELLA SPA
+   ========================================== */
+
+/* Organizacion de las tarjetas */
+.servicios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  padding: 35px 20px;
+}
+
+/* Tarjetas de los servicios */
+.servicios > a,
+.servicios > div {
+  flex: 1 1 220px;
+  min-width: 0;
+  max-width: 300px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  padding: 25px 18px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(90, 40, 65, 0.12);
+}
+
+/* Botones dentro de las tarjetas */
+.servicios a,
+.servicios button {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-height: 52px;
+  padding: 14px 18px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Evita que los textos se corten */
+.servicios * {
+  word-wrap: break-word;
+}
+
+/* Adaptacion para celulares */
+@media (max-width: 768px) {
+  .servicios {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .servicios > a,
+  .servicios > div {
+    width: 100%;
+    max-width: 360px;
+    flex: 0 1 auto;
+  }
+}
+
+
+/* SERVICIOS - DISEÑO CORREGIDO */
+
+.servicios .servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 25px auto 0;
+  padding: 0;
+  list-style: none;
+}
+
+.servicios .servicios-grid li {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-width: 0;
+  padding: 18px;
+  background: rgba(255,255,255,0.96);
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.servicios .servicios-grid li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #c05b89;
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.servicios .servicios-grid li a:hover {
+  background: #963e68;
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .servicios .servicios-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .servicios .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+}
