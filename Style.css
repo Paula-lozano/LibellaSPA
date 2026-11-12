@@ -1259,4 +1259,12 @@ section[id] {
         display: none;
     }
 
+    html {
+    scroll-behavior: smooth;
+}
+
+#citas {
+    scroll-margin-top: 100px;
+}
+
 }

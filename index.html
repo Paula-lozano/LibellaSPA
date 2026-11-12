@@ -44,6 +44,7 @@
     </a>
 
     
+
 <!-- MENÚ PRINCIPAL DE LIBELLA SPA -->
 <nav aria-label="Navegación principal">
 
@@ -53,6 +54,11 @@
 
     <a href="#servicios">
         Servicios
+    </a>
+
+    <!-- ACCESO DIRECTO A RESERVAS -->
+    <a href="#citas">
+        Reservas
     </a>
 
     <a href="#nosotras">
@@ -69,7 +75,6 @@
     </a>
 
 </nav>
-
 
     <a class="btn btn-small" href="#suscripcion">
       Únete a Libella <span aria-hidden="true">↗</span>
@@ -397,6 +402,34 @@
             placeholder="¿Cómo te llamas?"
             required>
 
+
+<!-- SELECCIÓN DEL SERVICIO -->
+
+<label for="servicio">
+  ¿Qué servicio deseas reservar?
+</label>
+
+<select id="servicio" name="servicio" required>
+
+  <option value="" disabled selected>
+    Selecciona un servicio
+  </option>
+
+  <option value="Manicure">
+    Manicure
+  </option>
+
+  <option value="Pedicure">
+    Pedicure
+  </option>
+
+  <option value="Uñas acrílicas">
+    Uñas acrílicas
+  </option>
+
+</select>
+
+
           <div class="form-two">
 
             <div>
@@ -618,6 +651,9 @@
 
   <!-- ANIMACIONES -->
   <script src="Interacciones.js"></script>
+
+<!-- HORARIOS Y RESERVAS CON FIREBASE -->
+<script type="module" src="reservas.js"></script>
 
 </body>
 </html>
