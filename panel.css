@@ -416,8 +416,12 @@ tfoot td { font-weight: 700; background: #fcf7fa; }
 
 .dos-col {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
     gap: 18px;
+}
+
+.dos-col table {
+    min-width: 0;
 }
 
 dialog {

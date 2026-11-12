@@ -1,6 +1,6 @@
 /* LIBELLA SPA - Hoja de estilos principal para index.html actual */
 :root {
-    --rosa: #c05b89;
+    --rosa: #a8467a;
     --rosa-oscuro: #823c61;
     --rosa-claro: #fff1f6;
     --tinta: #493344;
@@ -556,7 +556,7 @@ section[id] {
     font-size: 52px;
     line-height: 1;
     margin: 27px 0;
-    color: #c05b89;
+    color: #a8467a;
 }
 
 .service-card h3 {
