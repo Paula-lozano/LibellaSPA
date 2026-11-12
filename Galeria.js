@@ -40,8 +40,12 @@ imagenesPorServicio[servicio].forEach((ruta, indice) => {
   const img = document.createElement("img");
   img.src = `Imagenes/${ruta}`;
   img.alt = `${titulos[servicio]}: diseño ${indice + 1} realizado en AL Beauty Studio`;
-  img.loading = "lazy";
+  // Las fotos de la galería son visibles al abrir la página, por lo que
+  // no se cargan en diferido (lazy) para no retrasar su pintado.
+  img.loading = "eager";
   img.decoding = "async";
+  img.width = 400;
+  img.height = 400;
   galeria.appendChild(img);
 });
 

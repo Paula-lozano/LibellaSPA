@@ -320,3 +320,17 @@ pielSelect.addEventListener("change", () => {
     actualizarSubtonos();
     botonGuardar.disabled = true;
 });
+
+// Enlace compartible: Simulador.html?piel=media&subtono=calido&ocasion=evento
+// abre la recomendación ya generada (solo acepta valores válidos).
+(function abrirDesdeEnlace() {
+    const q = new URLSearchParams(location.search);
+    const piel = q.get("piel"), subtono = q.get("subtono"), ocasion = q.get("ocasion");
+    if (!subtonosPorPiel[piel] || !subtonosPorPiel[piel].includes(subtono)) return;
+    pielSelect.value = piel;
+    actualizarSubtonos();
+    subtonoSelect.value = subtono;
+    if (reglasOcasion[ocasion]) ocasionSelect.value = ocasion;
+    recomendacionActual = generarRecomendacion(piel, subtono, ocasionSelect.value);
+    mostrarRecomendacion(recomendacionActual);
+})();

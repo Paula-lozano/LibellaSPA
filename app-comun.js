@@ -19,8 +19,7 @@ import {
 
 export const NEGOCIO = {
     nombre: "AL Beauty Studio",
-    whatsapp: "573017501031",
-    instagram: "@libella.cute"
+    whatsapp: "573017501031"
 };
 
 // Duración de cada bloque de agenda (minutos).
