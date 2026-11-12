@@ -15,14 +15,17 @@
    que luego aparece en su historial.
 ========================================== */
 
-import { auth, db } from "./firebase-config.js";
-import { esperarSesion, estadoSesion } from "./sesion.js";
-
-import {
-    collection,
-    addDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
+// Firebase se carga bajo demanda (import dinámico) solo cuando la
+// clienta guarda una recomendación. Así la página del simulador no
+// descarga ~230 KB al abrirse y carga más rápido en celulares.
+async function cargarFirebase() {
+    const [{ auth, db }, sesion, firestore] = await Promise.all([
+        import("./firebase-config.js"),
+        import("./sesion.js"),
+        import("https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js")
+    ]);
+    return { auth, db, ...sesion, ...firestore };
+}
 
 /* ---------- Datos de colorimetría ---------- */
 
@@ -274,7 +277,12 @@ formulario.addEventListener("submit", (evento) => {
 
 botonGuardar.addEventListener("click", async () => {
     if (!recomendacionActual) return;
+    botonGuardar.disabled = true;
+    mensaje.textContent = "Verificando tu sesión...";
+    mensaje.className = "mensaje";
+    const { auth, db, esperarSesion, estadoSesion, collection, addDoc, serverTimestamp } = await cargarFirebase();
     await esperarSesion();
+    botonGuardar.disabled = false;
 
     if (!auth.currentUser || !estadoSesion.perfil) {
         mensaje.replaceChildren("Inicia sesión para guardar la recomendación en tu historial. ");

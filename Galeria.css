@@ -41,7 +41,7 @@ body {
 
   .btn-volver {/*Diseño de la clase para el boton de volver*/
     display: inline-block;/*El botón se comporta como un bloque en línea*/
-    background-color: #e91e63;/*Color de fondo*/
+    background-color: #b0185a;/*Color de fondo (contraste 6.7:1 con texto blanco)*/
     color: white;/*Color de texto*/
     padding: 0.6em 1.2em;/*Espacio alrededor del contenido (arriba/abajo, lados)*/
     border-radius: 12px;/*Bordes redondeados*/
@@ -60,6 +60,7 @@ body {
 
   .banner-galeria {/*Diseño del banner*/
     position: relative;/*Permite posicionar elementos hijos (como la capa oscura con ::before) de forma absoluta respecto a este contenedor*/
+    background-color: #4a1d33; /*Color de respaldo oscuro: garantiza contraste del texto blanco*/
     background-image: url('Imagenes/FondoBanner.jpg'); /*Imagen de fondo del banner*/
     background-size: cover;/*La imagen se ajusta para cubrir todo el contenedor, recortando si es necesario*/
     background-position: center;/*Centra la imagen de fondo (horizontal y vertical) dentro del contenedor*/

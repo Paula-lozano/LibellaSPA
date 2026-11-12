@@ -21,7 +21,7 @@ body {
 
 .banner {
   position: relative;
-  background: url("Imagenes/FondoBanner.jpg") center / cover;
+  background: #4a1d33 url("Imagenes/FondoBanner.jpg") center / cover;
   color: #fff;
   padding: 2em 1em;
   text-align: center;
