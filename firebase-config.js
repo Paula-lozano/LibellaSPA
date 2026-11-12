@@ -17,7 +17,12 @@ Utilizaremos:
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
 
 // Importamos las herramientas de autenticación.
-import { getAuth } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+import {
+    initializeAuth,
+    indexedDBLocalPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence
+} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
 
 // Importamos la base de datos Firestore.
 import { getFirestore } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
@@ -41,7 +46,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Inicializamos el servicio de autenticación.
-const auth = getAuth(app);
+// Se usa initializeAuth sin "popupRedirectResolver": el sitio solo
+// inicia sesión con correo y contraseña, por lo que no se descarga
+// el iframe de Google (iframe.js y gapi, ~130 KB), lo que reduce el
+// tiempo de carga. La sesión se conserva en IndexedDB igual que antes.
+const auth = initializeAuth(app, {
+    persistence: [indexedDBLocalPersistence, browserLocalPersistence, browserSessionPersistence]
+});
 
 // Inicializamos la base de datos.
 const db = getFirestore(app);
