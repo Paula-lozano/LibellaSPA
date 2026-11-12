@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Simulador de colorimetría de AL Beauty Studio: recibe una paleta de esmaltes según tu tono y subtono de piel.">
   <title>Simulador de colorimetría | AL Beauty Studio</title>
+  <!-- Imagen del encabezado con prioridad (mejora el LCP) -->
+  <link rel="preload" as="image" href="Imagenes/FondoBanner.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="Simulador.css?v=3">
+  <!-- Fuentes cargadas sin bloquear el pintado de la página -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@600&display=swap"></noscript>
+  <link rel="stylesheet" href="Simulador.css?v=4">
 </head>
 
 <body>
@@ -87,9 +90,9 @@
   </main>
 
   <footer class="footer">
-    <p><i class="fas fa-feather" aria-hidden="true"></i>AL Beauty Studio</p>
-    <p><i class="fab fa-instagram" aria-hidden="true"></i>@libella.cute</p>
-    <p><i class="fas fa-phone-alt" aria-hidden="true"></i>301 750 1031</p>
+    <p><span class="icono" aria-hidden="true">✦</span>AL Beauty Studio</p>
+    <p><span class="icono" aria-hidden="true">◎</span>Instagram: @libella.cute</p>
+    <p><span class="icono" aria-hidden="true">✆</span>301 750 1031</p>
   </footer>
 
   <script type="module" src="sesion.js"></script>

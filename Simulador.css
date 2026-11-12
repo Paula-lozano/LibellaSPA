@@ -234,4 +234,4 @@ button:disabled { opacity: .6; cursor: not-allowed; }
 }
 
 .footer p { margin: .4em 0; }
-.footer i { color: var(--rosa); margin-right: 6px; }
+.footer .icono { color: var(--rosa); margin-right: 6px; }

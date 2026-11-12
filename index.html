@@ -14,9 +14,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
+  <!-- Fuentes cargadas sin bloquear el pintado de la página -->
+  <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-    rel="stylesheet">
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"></noscript>
 
   <!-- Imagen principal con prioridad de descarga (mejora el LCP) -->
   <link rel="preload" as="image" href="Imagenes/FondoBanner.jpg" fetchpriority="high">
