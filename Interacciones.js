@@ -1,6 +1,6 @@
 
 // ==========================================
-// LIBELLA SPA - EFECTOS INTERACTIVOS
+// AL BEAUTY STUDIO - EFECTOS INTERACTIVOS
 // ==========================================
 
 // 1. ELEMENTOS PRINCIPALES

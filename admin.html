@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Panel administrativo | AL Beauty Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="panel.css?v=1">
+</head>
+
+<body>
+
+    <header class="panel-header">
+        <a class="panel-brand" href="index.html">
+            ✦ AL Beauty Studio
+            <small>PANEL ADMINISTRATIVO</small>
+        </a>
+        <div class="panel-user">
+            <span id="nombre-admin">Verificando acceso...</span>
+            <a class="btn sec peq" href="index.html">Ver sitio</a>
+            <button class="btn peq" type="button" id="btn-salir">Cerrar sesión</button>
+        </div>
+    </header>
+
+    <div id="pantalla-carga" class="cargando">Cargando información del estudio...</div>
+
+    <div class="panel-layout oculto" id="panel">
+
+        <nav class="panel-nav" role="tablist" aria-label="Módulos del panel">
+            <button role="tab" data-seccion="resumen" aria-selected="true">Resumen</button>
+            <button role="tab" data-seccion="agenda" aria-selected="false">Agenda y citas</button>
+            <button role="tab" data-seccion="facturacion" aria-selected="false">Facturación</button>
+            <button role="tab" data-seccion="reportes" aria-selected="false">Reportes</button>
+            <button role="tab" data-seccion="clientes" aria-selected="false">Clientes registrados</button>
+            <button role="tab" data-seccion="servicios" aria-selected="false">Servicios y precios</button>
+            <button role="tab" data-seccion="profesionales" aria-selected="false">Profesionales</button>
+            <button role="tab" data-seccion="opiniones" aria-selected="false">Opiniones</button>
+        </nav>
+
+        <main class="panel-main">
+
+            <!-- ============ RESUMEN ============ -->
+            <section id="sec-resumen" role="tabpanel">
+                <h1>Resumen</h1>
+                <p class="subtitulo">Estado general del estudio.</p>
+                <div class="kpis" id="kpis"></div>
+                <div class="dos-col">
+                    <div class="tarjeta">
+                        <h2>Próximas citas</h2>
+                        <div id="resumen-proximas"></div>
+                    </div>
+                    <div class="tarjeta">
+                        <h2>Citas por confirmar</h2>
+                        <div id="resumen-pendientes"></div>
+                    </div>
+                </div>
+                <div class="tarjeta no-imprimir" id="tarjeta-semilla">
+                    <h2>Datos iniciales</h2>
+                    <p class="subtitulo">Crea en la base de datos los servicios y profesionales iniciales si aún no existen.</p>
+                    <button class="btn sec" type="button" id="btn-semilla">Cargar servicios y profesionales iniciales</button>
+                    <p class="mensaje" id="msg-semilla"></p>
+                </div>
+            </section>
+
+            <!-- ============ AGENDA ============ -->
+            <section id="sec-agenda" role="tabpanel" hidden>
+                <h1>Agenda y citas</h1>
+                <p class="subtitulo">Agenda de las profesionales, confirmación, cancelación y atención de citas.</p>
+
+                <div class="tarjeta">
+                    <h2>Agenda del día por profesional</h2>
+                    <div class="filtros">
+                        <div class="campo" style="max-width:220px">
+                            <label for="agenda-fecha">Fecha</label>
+                            <input type="date" id="agenda-fecha">
+                        </div>
+                    </div>
+                    <div class="agenda-dia" id="agenda-dia"></div>
+                </div>
+
+                <div class="tarjeta">
+                    <h2>Listado de citas</h2>
+                    <div class="filtros">
+                        <div class="campo">
+                            <label for="citas-desde">Desde</label>
+                            <input type="date" id="citas-desde">
+                        </div>
+                        <div class="campo">
+                            <label for="citas-hasta">Hasta</label>
+                            <input type="date" id="citas-hasta">
+                        </div>
+                        <div class="campo">
+                            <label for="citas-profesional">Profesional</label>
+                            <select id="citas-profesional"></select>
+                        </div>
+                        <div class="campo">
+                            <label for="citas-estado">Estado</label>
+                            <select id="citas-estado">
+                                <option value="">Todos</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="confirmada">Confirmada</option>
+                                <option value="atendida">Atendida</option>
+                                <option value="cancelada">Cancelada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tabla-wrap" id="tabla-citas"></div>
+                    <p class="mensaje" id="msg-citas"></p>
+                </div>
+            </section>
+
+            <!-- ============ FACTURACIÓN ============ -->
+            <section id="sec-facturacion" role="tabpanel" hidden>
+                <h1>Facturación</h1>
+                <p class="subtitulo">Registro de servicios prestados, valor cobrado y método de pago.</p>
+
+                <div class="tarjeta">
+                    <h2>Nueva factura</h2>
+                    <form id="form-factura" novalidate>
+                        <div class="form-grid">
+                            <div class="campo">
+                                <label for="fac-cliente">Cliente</label>
+                                <select id="fac-cliente" required></select>
+                            </div>
+                            <div class="campo">
+                                <label for="fac-cita">Cita asociada (opcional)</label>
+                                <select id="fac-cita"></select>
+                            </div>
+                            <div class="campo">
+                                <label for="fac-fecha">Fecha</label>
+                                <input type="date" id="fac-fecha" required>
+                            </div>
+                            <div class="campo">
+                                <label for="fac-metodo">Método de pago</label>
+                                <select id="fac-metodo" required></select>
+                            </div>
+                            <div class="campo">
+                                <label for="fac-estado">Estado del pago</label>
+                                <select id="fac-estado">
+                                    <option value="pagada">Pagada</option>
+                                    <option value="pendiente">Pendiente de pago</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label for="fac-descuento">Descuento (COP)</label>
+                                <input type="number" id="fac-descuento" min="0" step="500" value="0">
+                            </div>
+                        </div>
+
+                        <h2 style="margin-top:18px">Servicios (ítems)</h2>
+                        <div class="tabla-wrap">
+                            <table class="items-factura">
+                                <thead>
+                                    <tr>
+                                        <th>Servicio</th>
+                                        <th style="width:110px">Cantidad</th>
+                                        <th style="width:160px">Valor unitario</th>
+                                        <th class="num" style="width:140px">Subtotal</th>
+                                        <th style="width:60px"><span class="oculto">Quitar</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="items-factura"></tbody>
+                            </table>
+                        </div>
+                        <div class="acciones">
+                            <button class="btn sec peq" type="button" id="btn-agregar-item">+ Agregar servicio</button>
+                        </div>
+
+                        <div class="campo ancho" style="margin-top:12px">
+                            <label for="fac-observaciones">Observaciones</label>
+                            <textarea id="fac-observaciones" rows="2" maxlength="300"></textarea>
+                        </div>
+
+                        <div class="totales" id="totales-factura"></div>
+
+                        <div class="acciones">
+                            <button class="btn" type="submit" id="btn-guardar-factura">Generar factura</button>
+                            <button class="btn sec" type="reset" id="btn-limpiar-factura">Limpiar</button>
+                        </div>
+                        <p class="mensaje" id="msg-factura"></p>
+                    </form>
+                </div>
+
+                <div class="tarjeta">
+                    <h2>Facturas emitidas</h2>
+                    <div class="filtros">
+                        <div class="campo">
+                            <label for="facturas-desde">Desde</label>
+                            <input type="date" id="facturas-desde">
+                        </div>
+                        <div class="campo">
+                            <label for="facturas-hasta">Hasta</label>
+                            <input type="date" id="facturas-hasta">
+                        </div>
+                        <div class="campo">
+                            <label for="facturas-estado">Estado</label>
+                            <select id="facturas-estado">
+                                <option value="">Todos</option>
+                                <option value="pagada">Pagada</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="anulada">Anulada</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label for="facturas-buscar">Buscar cliente o número</label>
+                            <input type="search" id="facturas-buscar" placeholder="Nombre, documento o ALB-...">
+                        </div>
+                    </div>
+                    <div class="tabla-wrap" id="tabla-facturas"></div>
+                </div>
+            </section>
+
+            <!-- ============ REPORTES ============ -->
+            <section id="sec-reportes" role="tabpanel" hidden>
+                <h1>Reportes</h1>
+                <p class="subtitulo">Ingresos por periodo, método de pago, servicio y profesional; citas confirmadas y canceladas.</p>
+
+                <div class="tarjeta no-imprimir">
+                    <div class="filtros">
+                        <div class="campo">
+                            <label for="rep-desde">Desde</label>
+                            <input type="date" id="rep-desde">
+                        </div>
+                        <div class="campo">
+                            <label for="rep-hasta">Hasta</label>
+                            <input type="date" id="rep-hasta">
+                        </div>
+                        <div class="campo">
+                            <label for="rep-agrupar">Agrupar ingresos por</label>
+                            <select id="rep-agrupar">
+                                <option value="dia">Día</option>
+                                <option value="semana">Semana</option>
+                                <option value="mes">Mes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="acciones">
+                        <button class="btn sec peq" type="button" data-rango="hoy">Hoy</button>
+                        <button class="btn sec peq" type="button" data-rango="semana">Esta semana</button>
+                        <button class="btn sec peq" type="button" data-rango="mes">Este mes</button>
+                        <button class="btn sec peq" type="button" data-rango="anio">Este año</button>
+                        <button class="btn peq" type="button" id="btn-imprimir-reporte">Imprimir / PDF</button>
+                        <button class="btn peq sec" type="button" id="btn-csv-reporte">Descargar CSV</button>
+                    </div>
+                </div>
+
+                <div class="kpis" id="rep-kpis"></div>
+
+                <div class="dos-col">
+                    <div class="tarjeta">
+                        <h2>Ingresos por periodo</h2>
+                        <div class="tabla-wrap" id="rep-periodo"></div>
+                    </div>
+                    <div class="tarjeta">
+                        <h2>Ingresos por método de pago</h2>
+                        <div class="tabla-wrap" id="rep-metodo"></div>
+                    </div>
+                    <div class="tarjeta">
+                        <h2>Ingresos por servicio</h2>
+                        <div class="tabla-wrap" id="rep-servicio"></div>
+                    </div>
+                    <div class="tarjeta">
+                        <h2>Ingresos y citas por profesional</h2>
+                        <div class="tabla-wrap" id="rep-profesional"></div>
+                    </div>
+                    <div class="tarjeta">
+                        <h2>Citas por estado (confirmación y cancelación)</h2>
+                        <div class="tabla-wrap" id="rep-estados"></div>
+                    </div>
+                    <div class="tarjeta">
+                        <h2>Detalle de cancelaciones</h2>
+                        <div class="tabla-wrap" id="rep-cancelaciones"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ CLIENTES ============ -->
+            <section id="sec-clientes" role="tabpanel" hidden>
+                <h1>Clientes registrados</h1>
+                <p class="subtitulo">Usuarios registrados, consulta de antecedentes e historial (RF-008 / CU-004).</p>
+                <div class="tarjeta">
+                    <div class="filtros">
+                        <div class="campo">
+                            <label for="clientes-buscar">Buscar por nombre, documento o correo</label>
+                            <input type="search" id="clientes-buscar" placeholder="Ej. María o 1012345678">
+                        </div>
+                        <div class="campo" style="max-width:200px">
+                            <label for="clientes-rol">Rol</label>
+                            <select id="clientes-rol">
+                                <option value="">Todos</option>
+                                <option value="cliente">Cliente</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tabla-wrap" id="tabla-clientes"></div>
+                    <p class="mensaje" id="msg-clientes"></p>
+                </div>
+                <div class="tarjeta oculto" id="historial-cliente"></div>
+            </section>
+
+            <!-- ============ SERVICIOS ============ -->
+            <section id="sec-servicios" role="tabpanel" hidden>
+                <h1>Servicios y precios</h1>
+                <p class="subtitulo">Registro, actualización y consulta de servicios (RF-002 / CU-002).</p>
+                <div class="tarjeta">
+                    <h2 id="titulo-form-servicio">Nuevo servicio</h2>
+                    <form id="form-servicio" novalidate>
+                        <input type="hidden" id="srv-id">
+                        <div class="form-grid">
+                            <div class="campo">
+                                <label for="srv-nombre">Nombre</label>
+                                <input id="srv-nombre" maxlength="80" required>
+                            </div>
+                            <div class="campo">
+                                <label for="srv-categoria">Categoría</label>
+                                <select id="srv-categoria">
+                                    <option value="manicure">Manicure</option>
+                                    <option value="pedicure">Pedicure</option>
+                                    <option value="acrilicas">Acrílicas</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label for="srv-precio">Valor del servicio (COP)</label>
+                                <input id="srv-precio" type="number" min="0" step="500" required>
+                            </div>
+                            <div class="campo">
+                                <label for="srv-duracion">Duración (min)</label>
+                                <input id="srv-duracion" type="number" min="15" step="15" value="120">
+                            </div>
+                            <div class="campo ancho">
+                                <label for="srv-descripcion">Descripción</label>
+                                <textarea id="srv-descripcion" rows="2" maxlength="300"></textarea>
+                            </div>
+                            <div class="campo">
+                                <label for="srv-foto">Foto (ruta o URL)</label>
+                                <input id="srv-foto" maxlength="300" placeholder="Imagenes/Manicure/Manicure1.jpg">
+                            </div>
+                            <div class="campo">
+                                <label for="srv-activo">Estado</label>
+                                <select id="srv-activo">
+                                    <option value="true">Activo</option>
+                                    <option value="false">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="acciones">
+                            <button class="btn" type="submit">Guardar servicio</button>
+                            <button class="btn sec" type="reset" id="btn-cancelar-servicio">Cancelar edición</button>
+                        </div>
+                        <p class="mensaje" id="msg-servicio"></p>
+                    </form>
+                </div>
+                <div class="tabla-wrap" id="tabla-servicios"></div>
+            </section>
+
+            <!-- ============ PROFESIONALES ============ -->
+            <section id="sec-profesionales" role="tabpanel" hidden>
+                <h1>Profesionales</h1>
+                <p class="subtitulo">Horario de trabajo de cada profesional. La disponibilidad de reservas se calcula con estos datos.</p>
+                <div class="tarjeta">
+                    <h2 id="titulo-form-profesional">Nueva profesional</h2>
+                    <form id="form-profesional" novalidate>
+                        <input type="hidden" id="pro-id">
+                        <div class="form-grid">
+                            <div class="campo">
+                                <label for="pro-nombre">Nombre</label>
+                                <input id="pro-nombre" maxlength="80" required>
+                            </div>
+                            <div class="campo">
+                                <label for="pro-especialidad">Especialidad</label>
+                                <input id="pro-especialidad" maxlength="120">
+                            </div>
+                            <div class="campo">
+                                <label for="pro-telefono">Celular</label>
+                                <input id="pro-telefono" maxlength="13">
+                            </div>
+                            <div class="campo">
+                                <label for="pro-entrada">Hora de entrada</label>
+                                <input id="pro-entrada" type="time" value="08:00" required>
+                            </div>
+                            <div class="campo">
+                                <label for="pro-salida">Hora de salida</label>
+                                <input id="pro-salida" type="time" value="17:00" required>
+                            </div>
+                            <div class="campo">
+                                <label for="pro-activo">Estado</label>
+                                <select id="pro-activo">
+                                    <option value="true">Activa</option>
+                                    <option value="false">Inactiva</option>
+                                </select>
+                            </div>
+                            <div class="campo ancho">
+                                <span style="font-size:13px;font-weight:700;color:var(--suave)">Días de atención</span>
+                                <div class="dias" id="pro-dias"></div>
+                            </div>
+                        </div>
+                        <div class="acciones">
+                            <button class="btn" type="submit">Guardar profesional</button>
+                            <button class="btn sec" type="reset" id="btn-cancelar-profesional">Cancelar edición</button>
+                        </div>
+                        <p class="mensaje" id="msg-profesional"></p>
+                    </form>
+                </div>
+                <div class="tabla-wrap" id="tabla-profesionales"></div>
+            </section>
+
+            <!-- ============ OPINIONES ============ -->
+            <section id="sec-opiniones" role="tabpanel" hidden>
+                <h1>Opiniones</h1>
+                <p class="subtitulo">Moderación de las opiniones publicadas en el sitio.</p>
+                <div class="tabla-wrap" id="tabla-opiniones"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Comprobante de factura -->
+    <dialog id="dialogo-factura" aria-labelledby="titulo-comprobante">
+        <div class="dialog-cuerpo" id="contenido-comprobante"></div>
+        <div class="dialog-pie">
+            <button class="btn sec" type="button" id="btn-cerrar-comprobante">Cerrar</button>
+            <button class="btn" type="button" id="btn-imprimir-comprobante">Imprimir / Guardar PDF</button>
+        </div>
+    </dialog>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

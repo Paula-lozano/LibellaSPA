@@ -1,7 +1,7 @@
 
 /*
 ==========================================
-LIBELLA SPA - CONFIGURACIÓN DE FIREBASE
+AL BEAUTY STUDIO - CONFIGURACIÓN DE FIREBASE
 ==========================================
 
 Este archivo conecta nuestra página web
@@ -23,6 +23,11 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
 
 // Configuración de nuestro proyecto Firebase.
+// Nota: el identificador técnico del proyecto (libella-spa)
+// conserva el nombre comercial anterior de la empresa. No es
+// visible para las usuarias; la marca vigente es AL Beauty Studio.
+// Estas claves web son públicas por diseño: la protección de los
+// datos la dan las reglas de seguridad (firestore.rules).
 const firebaseConfig = {
     apiKey: "AIzaSyB5FFzkLZGsNdM_X1CNxFpweBhzDmeJPnI",
     authDomain: "libella-spa.firebaseapp.com",

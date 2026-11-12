@@ -1,0 +1,512 @@
+/* ==========================================
+   AL BEAUTY STUDIO - ESTILOS DE LOS PANELES
+   (admin.html y mi-cuenta.html)
+========================================== */
+
+:root {
+    --rosa: #b0185a;
+    --rosa-oscuro: #7c1442;
+    --rosa-claro: #fdf0f6;
+    --tinta: #36222e;
+    --suave: #6d5262;
+    --borde: #ead5df;
+    --fondo: #faf6f8;
+    --verde: #1d6b3d;
+    --verde-claro: #e3f4ea;
+    --ambar: #8a5a00;
+    --ambar-claro: #fff3d6;
+    --rojo: #a0153e;
+    --rojo-claro: #fde6ec;
+    --azul: #1c4f8a;
+    --azul-claro: #e4eefb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "DM Sans", Arial, sans-serif;
+    color: var(--tinta);
+    background: var(--fondo);
+    font-size: 15px;
+}
+
+a { color: var(--rosa); }
+
+:focus-visible {
+    outline: 3px solid var(--rosa-oscuro);
+    outline-offset: 2px;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px clamp(16px, 4vw, 36px);
+    background: #fff;
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.panel-brand {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--rosa-oscuro);
+    text-decoration: none;
+}
+
+.panel-brand small {
+    display: block;
+    font: 700 10px "DM Sans", Arial, sans-serif;
+    letter-spacing: 2px;
+    color: var(--suave);
+}
+
+.panel-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--suave);
+}
+
+.panel-layout {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    min-height: calc(100vh - 70px);
+}
+
+.panel-nav {
+    background: #fff;
+    border-right: 1px solid var(--borde);
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.panel-nav button {
+    text-align: left;
+    border: 0;
+    background: transparent;
+    padding: 11px 14px;
+    border-radius: 10px;
+    font: 600 15px "DM Sans", Arial, sans-serif;
+    color: var(--tinta);
+    cursor: pointer;
+}
+
+.panel-nav button:hover { background: var(--rosa-claro); }
+
+.panel-nav button[aria-selected="true"] {
+    background: var(--rosa);
+    color: #fff;
+}
+
+.panel-main {
+    padding: clamp(16px, 3vw, 32px);
+    min-width: 0;
+}
+
+.panel-main h1 {
+    font-family: "Playfair Display", Georgia, serif;
+    margin: 0 0 4px;
+    font-size: 26px;
+}
+
+.panel-main h2 {
+    font-size: 18px;
+    margin: 0 0 12px;
+}
+
+.subtitulo {
+    color: var(--suave);
+    margin: 0 0 20px;
+}
+
+.tarjeta {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 14px rgba(80, 20, 50, .05);
+}
+
+.kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.kpi {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+.kpi span {
+    display: block;
+    color: var(--suave);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.kpi strong {
+    display: block;
+    font-size: 26px;
+    margin-top: 6px;
+    color: var(--rosa-oscuro);
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+    margin-bottom: 14px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+    flex: 1 1 150px;
+}
+
+.campo label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--suave);
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    padding: 9px 10px;
+    border: 1px solid #cdb3c0;
+    border-radius: 9px;
+    font: inherit;
+    background: #fff;
+    color: var(--tinta);
+    width: 100%;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.form-grid .ancho { grid-column: 1 / -1; }
+
+.dias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.dias label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    color: var(--tinta);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid var(--rosa);
+    background: var(--rosa);
+    color: #fff;
+    border-radius: 999px;
+    padding: 9px 18px;
+    font: 700 14px "DM Sans", Arial, sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:hover { background: var(--rosa-oscuro); }
+
+.btn.sec {
+    background: #fff;
+    color: var(--rosa);
+}
+
+.btn.sec:hover { background: var(--rosa-claro); }
+
+.btn.peq {
+    padding: 5px 11px;
+    font-size: 13px;
+}
+
+.btn.ok { background: var(--verde); border-color: var(--verde); }
+.btn.peligro { background: #fff; color: var(--rojo); border-color: var(--rojo); }
+.btn.peligro:hover { background: var(--rojo-claro); }
+
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.tabla-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    background: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--borde);
+    vertical-align: top;
+    font-size: 14px;
+}
+
+th {
+    background: var(--rosa-claro);
+    color: var(--rosa-oscuro);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+td.num, th.num { text-align: right; }
+
+tr:last-child td { border-bottom: 0; }
+
+tfoot td { font-weight: 700; background: #fcf7fa; }
+
+.vacio {
+    padding: 18px;
+    color: var(--suave);
+    text-align: center;
+}
+
+.estado {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.estado.pendiente { background: var(--ambar-claro); color: var(--ambar); }
+.estado.confirmada { background: var(--azul-claro); color: var(--azul); }
+.estado.atendida, .estado.pagada { background: var(--verde-claro); color: var(--verde); }
+.estado.cancelada, .estado.anulada { background: var(--rojo-claro); color: var(--rojo); }
+.estado.inactivo { background: #eee; color: #555; }
+
+.mensaje {
+    margin: 10px 0 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.mensaje:empty { display: none; }
+.mensaje.info { background: var(--rosa-claro); }
+.mensaje.success { background: var(--verde-claro); color: var(--verde); }
+.mensaje.error { background: var(--rojo-claro); color: var(--rojo); }
+
+.agenda-dia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+.agenda-col h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+}
+
+.agenda-col h3 small {
+    display: block;
+    color: var(--suave);
+    font-weight: 400;
+}
+
+.bloque {
+    border: 1px dashed var(--borde);
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    background: #fff;
+}
+
+.bloque.ocupado {
+    border-style: solid;
+    border-left: 5px solid var(--rosa);
+}
+
+.bloque.ocupado.confirmada { border-left-color: var(--azul); }
+.bloque.ocupado.atendida { border-left-color: var(--verde); }
+.bloque.ocupado.pendiente { border-left-color: #d49b00; }
+
+.bloque strong { display: block; }
+
+.items-factura td input,
+.items-factura td select {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #cdb3c0;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.totales {
+    display: grid;
+    justify-content: end;
+    gap: 4px;
+    margin-top: 12px;
+    font-size: 15px;
+}
+
+.totales div {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.totales .total {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--rosa-oscuro);
+}
+
+.barra {
+    height: 10px;
+    background: var(--rosa-claro);
+    border-radius: 999px;
+    overflow: hidden;
+    min-width: 80px;
+}
+
+.barra span {
+    display: block;
+    height: 100%;
+    background: var(--rosa);
+}
+
+.dos-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+dialog {
+    border: 0;
+    border-radius: 16px;
+    padding: 0;
+    width: min(760px, 94vw);
+    max-height: 90vh;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+dialog::backdrop { background: rgba(40, 15, 30, .45); }
+
+.dialog-cuerpo { padding: 22px; overflow: auto; max-height: calc(90vh - 70px); }
+
+.dialog-pie {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 22px;
+    border-top: 1px solid var(--borde);
+    background: #fcf8fa;
+}
+
+/* Comprobante de factura */
+.comprobante {
+    font-size: 14px;
+    color: #222;
+}
+
+.comprobante .cab {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 2px solid var(--rosa);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+.comprobante h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    margin: 0;
+    color: var(--rosa-oscuro);
+}
+
+.comprobante table { min-width: 0; }
+
+.comprobante .nota {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #555;
+}
+
+.oculto { display: none !important; }
+
+.cargando {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--suave);
+}
+
+@media (max-width: 820px) {
+    .panel-layout { grid-template-columns: 1fr; }
+    .panel-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--borde);
+        padding: 10px;
+    }
+    .panel-nav button { white-space: nowrap; }
+}
+
+/* Impresión: solo el comprobante o el reporte */
+@media print {
+    body.imprimir-comprobante > *:not(#dialogo-factura) { display: none !important; }
+    body.imprimir-comprobante #dialogo-factura {
+        position: static;
+        box-shadow: none;
+        width: 100%;
+        max-height: none;
+    }
+    body.imprimir-comprobante .dialog-pie { display: none; }
+    body.imprimir-comprobante .dialog-cuerpo { max-height: none; overflow: visible; }
+
+    body.imprimir-reporte .panel-header,
+    body.imprimir-reporte .panel-nav,
+    body.imprimir-reporte .no-imprimir { display: none !important; }
+    body.imprimir-reporte .panel-layout { display: block; }
+    .tabla-wrap { overflow: visible; border: 0; }
+    table { min-width: 0; }
+}

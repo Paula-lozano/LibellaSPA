@@ -1,10 +1,15 @@
 
 // ==========================================
-// LIBELLA SPA - SUSCRIPCION CON EMAILJS
+// AL BEAUTY STUDIO - SUSCRIPCION CON EMAILJS
 // ==========================================
+// Servicio externo: EmailJS envía el correo de
+// bienvenida usando la plantilla configurada en
+// https://dashboard.emailjs.com. Las tres llaves
+// siguientes son públicas por diseño (EmailJS las
+// expone en el navegador); el envío se limita por
+// dominio permitido desde el panel de EmailJS.
 
-// 1. CONFIGURACION DE EMAILJS
-// Reemplaza este texto por tu clave publica.
+// 1. CONFIGURACION DE EMAILJS (clave pública)
 const EMAILJS_PUBLIC_KEY = "1Gbqb3sfLWYUcvHnz";
 
 // Servicio y plantilla creados en EmailJS

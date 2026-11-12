@@ -717,7 +717,7 @@ section[id] {
     color: #70415d;
 }
 
-.form-panel input,.form-panel select,.opinion-form input,.opinion-form textarea {
+.form-panel input,.form-panel select,.opinion-form input,.opinion-form select,.opinion-form textarea {
     width: 100%;
     min-width: 0;
     padding: 13px 14px;
@@ -727,7 +727,7 @@ section[id] {
     color: var(--tinta);
 }
 
-.form-panel input:focus,.form-panel select:focus,.opinion-form input:focus,.opinion-form textarea:focus {
+.form-panel input:focus,.form-panel select:focus,.opinion-form input:focus,.opinion-form select:focus,.opinion-form textarea:focus {
     outline: none;
     border-color: var(--rosa);
     box-shadow: 0 0 0 3px rgba(192,91,137,.14);
@@ -1267,4 +1267,145 @@ section[id] {
     scroll-margin-top: 100px;
 }
 
+}
+
+/* ==========================================
+   AÑADIDOS: sesión, mensajes, opiniones y
+   enlaces a galería/simulador
+========================================== */
+.menu-sesion {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-salir {
+    border: 1px solid var(--borde);
+    background: #fff;
+    color: #793b5b;
+    font: 700 13px "DM Sans", Arial, sans-serif;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.nav-salir:hover,
+.nav-salir:focus-visible {
+    border-color: var(--rosa);
+    color: var(--rosa);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #823c61;
+    outline-offset: 2px;
+}
+
+.form-message {
+    min-height: 1.2em;
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 10px;
+}
+
+.form-message:empty {
+    display: none;
+}
+
+.form-message.info,
+.form-message.success,
+.form-message.error {
+    padding: 12px 14px;
+}
+
+.form-message.info {
+    background: #f7eef3;
+    color: #5d2a46;
+}
+
+.form-message.success {
+    background: #e7f5ec;
+    color: #1d5c37;
+}
+
+.form-message.error {
+    background: #fde8ee;
+    color: #8c1f3d;
+}
+
+.form-message a {
+    color: inherit;
+    font-weight: 700;
+}
+
+.service-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.service-price {
+    display: block;
+    margin: 6px 0 2px;
+    font-weight: 700;
+    color: var(--rosa-oscuro);
+}
+
+.cta-simulador {
+    max-width: 1200px;
+    margin: 32px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 24px 28px;
+    border-radius: 18px;
+    background: var(--rosa-claro);
+    border: 1px solid var(--borde);
+}
+
+.cta-simulador p {
+    margin: 0;
+    color: var(--tinta);
+}
+
+.opinion-list {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.opinion-item {
+    background: #fff;
+    border: 1px solid var(--borde);
+    padding: 22px;
+    border-radius: 15px;
+    box-shadow: 0 5px 16px rgba(93,41,66,.07);
+    display: grid;
+    gap: 6px;
+}
+
+.opinion-item p {
+    margin: 0;
+    color: var(--tinta);
+    overflow-wrap: anywhere;
+}
+
+.opinion-item small {
+    color: #7a5568;
+}
+
+.opinion-stars {
+    color: #b5487a;
+    letter-spacing: 2px;
+}
+
+.texto-datos {
+    display: block;
+    font-size: 12px;
+    color: #6f4a5c;
 }

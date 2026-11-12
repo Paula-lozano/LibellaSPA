@@ -1,60 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador de Colorimetría</title>
-  <link rel="stylesheet" href="Simulador.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulador de colorimetría de AL Beauty Studio: recibe una paleta de esmaltes según tu tono y subtono de piel.">
+  <title>Simulador de colorimetría | AL Beauty Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="Simulador.css?v=3">
 </head>
 
-
 <body>
-  <header class="banner"><!--Banner del encabezado-->
-    <h1>Simulador de Colorimetría para Uñas</h1>
-    <a href="index.html" class="btn-volver">← Volver al inicio</a><!--Boton para volver al incio-->
+  <header class="banner">
+    <h1>Simulador de colorimetría para uñas</h1>
+    <p>Elige tu tono de piel, tu subtono y la ocasión. Te sugerimos una paleta de esmaltes y el servicio ideal.</p>
+    <a href="index.html" class="btn-volver">← Volver al inicio</a>
   </header>
 
-  <div class="container">
-    <div class="form-group">
-      <label for="piel">Selecciona tu tono de piel:</label>
-      <select id="piel">
-        <option value="">-- Seleccionar --</option>
-        <option value="clara">Clara</option>
-        <option value="media">Media</option>
-        <option value="trigueña">Trigueña</option>
-        <option value="morena">Morena</option>
-        <option value="oscura">Oscura</option>
-        <option value="ebano">Ébano</option>
-      </select>
-    </div>
+  <main class="container">
 
-    <button onclick="mostrarColores()">Ver colores recomendados</button>
+    <form id="form-simulador">
+      <div class="form-grid">
 
-    <div id="resultado">
-      <div id="simulador-uña">
-        <h3>Vista previa en mano</h3>
-        <div class="mano-simulada" id="mano">
-          <div class="uña-simulada" id="uña1"></div>
-          <div class="uña-simulada" id="uña2"></div>
-          <div class="uña-simulada" id="uña3"></div>
-          <div class="uña-simulada" id="uña4"></div>
-          <div class="uña-simulada" id="uña5"></div>
+        <div class="form-group">
+          <label for="piel">Tono de piel</label>
+          <select id="piel" required>
+            <option value="">-- Seleccionar --</option>
+            <option value="clara">Clara</option>
+            <option value="media">Media</option>
+            <option value="triguena">Trigueña</option>
+            <option value="morena">Morena</option>
+            <option value="oscura">Oscura</option>
+            <option value="ebano">Ébano</option>
+          </select>
         </div>
-        <p id="codigoColor"></p>
+
+        <div class="form-group">
+          <label for="subtono">Subtono</label>
+          <select id="subtono" required disabled>
+            <option value="">Primero elige el tono</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ocasion">Ocasión</label>
+          <select id="ocasion">
+            <option value="diario">Día a día</option>
+            <option value="oficina">Oficina / trabajo</option>
+            <option value="fiesta">Fiesta / noche</option>
+            <option value="evento">Boda o evento especial</option>
+          </select>
+        </div>
+
       </div>
 
-      <div id="bloques-colores"></div>
+      <div class="acciones">
+        <button type="submit" id="btn-ver">Ver colores recomendados</button>
+      </div>
+    </form>
+
+    <section id="simulador-una" aria-labelledby="titulo-vista">
+      <h2 id="titulo-vista">Vista previa en mano</h2>
+      <div id="mano" aria-hidden="true">
+        <div class="una-simulada"></div>
+        <div class="una-simulada"></div>
+        <div class="una-simulada"></div>
+        <div class="una-simulada"></div>
+        <div class="una-simulada"></div>
+      </div>
+      <p id="codigoColor" role="status" aria-live="polite"></p>
+    </section>
+
+    <div id="resumen" aria-live="polite"></div>
+
+    <div id="bloques-colores" role="group" aria-label="Colores recomendados"></div>
+
+    <div class="acciones">
+      <button type="button" id="btn-guardar" class="secundario" disabled>Guardar en mi cuenta</button>
+      <a id="btn-reservar" class="btn-accion" href="index.html#citas" hidden>Reservar este servicio</a>
     </div>
-  </div>
+
+    <p id="mensaje-simulador" class="mensaje" role="status" aria-live="polite"></p>
+
+  </main>
 
   <footer class="footer">
-    <p><i class="fas fa-feather"></i>Libella SPA de Uñas</p>
-    <p><i class="fab fa-instagram"></i> @Libella.cute</p>
-    <p><i class="fas fa-phone-alt"></i> 3017501031</p>
+    <p><i class="fas fa-feather" aria-hidden="true"></i>AL Beauty Studio</p>
+    <p><i class="fab fa-instagram" aria-hidden="true"></i>@libella.cute</p>
+    <p><i class="fas fa-phone-alt" aria-hidden="true"></i>301 750 1031</p>
   </footer>
 
-  <script src="Simulador.js"></script>
+  <script type="module" src="sesion.js"></script>
+  <script type="module" src="Simulador.js"></script>
 </body>
 </html>

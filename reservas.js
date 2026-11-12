@@ -1,330 +1,285 @@
-/*
-==========================================
-LIBELLA SPA - RESERVAS CON FIREBASE
-==========================================
-*/
-
-// Conexión con Firebase Authentication y Firestore.
-import { auth, db } from "./firebase-config.js";
-
-// Herramientas que utilizaremos para consultar
-// los horarios ocupados en Firestore.
-import {
-    collection,
-    query,
-    where,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
-
 /* ==========================================
-   LIBELLA SPA
-   HORARIOS DE LAS PROFESIONALES
+   AL BEAUTY STUDIO - RESERVA DE CITAS
+   ------------------------------------------
+   RF-001 / CU-001. Flujo:
+   1. Se cargan servicios y profesionales desde
+      Firestore (colecciones servicios y
+      profesionales).
+   2. Al elegir fecha y profesional se consultan
+      los horarios ocupados y se muestran solo
+      los bloques libres.
+   3. Al enviar, la cita se registra en la
+      colección "citas" con estado "pendiente" y
+      se bloquea el horario en "horariosOcupados"
+      en una misma escritura atómica (batch).
+   4. Se ofrece el enlace de WhatsApp con el
+      resumen para notificar al estudio.
 ========================================== */
 
-// Horarios de trabajo configurados.
-// 1 = lunes, 2 = martes ... 6 = sábado.
+import { auth, db } from "./firebase-config.js";
+import { esperarSesion, estadoSesion } from "./sesion.js";
 
-const horariosProfesionales = {
+import {
+    collection,
+    doc,
+    query,
+    where,
+    getDocs,
+    writeBatch,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
 
-    alex: {
-        nombre: "Alexandra Cubillos",
-        entrada: "08:00",
-        salida: "17:00",
-        dias: [1, 2, 3, 4, 5, 6]
-    },
+import {
+    NEGOCIO,
+    obtenerServicios,
+    obtenerProfesionales,
+    generarFranjas,
+    idHorario,
+    fechaISO,
+    fechaLegible,
+    formatoCOP,
+    normalizarCelular,
+    limpiarTexto,
+    enlaceWhatsApp,
+    crear
+} from "./app-comun.js";
 
-    laura: {
-        nombre: "Laura Lozano",
-        entrada: "09:00",
-        salida: "18:00",
-        dias: [1, 2, 3, 4, 5, 6]
-    }
-
-};
-
-// Cada cita dura 120 minutos.
-const duracionCita = 120;
-
-// Elementos del formulario.
+const formulario = document.getElementById("form-cita");
+const nombreInput = document.getElementById("nombre");
+const servicioSelect = document.getElementById("servicio");
 const fechaInput = document.getElementById("fecha");
-const profesionalSelect =
-    document.getElementById("profesional");
+const profesionalSelect = document.getElementById("profesional");
 const horaSelect = document.getElementById("hora");
+const telefonoInput = document.getElementById("telefono");
+const mensaje = document.getElementById("mensaje-cita");
+const botonEnviar = formulario.querySelector('button[type="submit"]');
 
-// Convertir "08:00" a minutos.
-function convertirAMinutos(hora) {
+let servicios = [];
+let profesionales = [];
 
-    const partes = hora.split(":");
-
-    return Number(partes[0]) * 60 +
-           Number(partes[1]);
-
+function mostrarMensaje(contenido, tipo = "info") {
+    mensaje.replaceChildren(...[].concat(contenido));
+    mensaje.className = "form-message " + tipo;
 }
 
-// Convertir minutos a "HH:MM".
-function convertirAHora(minutos) {
-
-    const horas = Math.floor(minutos / 60);
-    const minutosRestantes = minutos % 60;
-
-    return String(horas).padStart(2, "0") +
-           ":" +
-           String(minutosRestantes).padStart(2, "0");
-
+function opcionesHora(texto) {
+    horaSelect.replaceChildren(crear("option", { value: "", texto }));
 }
 
-// Interpretar la fecha seleccionada como fecha local.
-function obtenerFechaLocal(valor) {
+/* ---------- Carga de catálogos ---------- */
 
-    const partes = valor.split("-").map(Number);
+async function cargarCatalogos() {
+    [servicios, profesionales] = await Promise.all([
+        obtenerServicios(),
+        obtenerProfesionales()
+    ]);
 
-    return new Date(
-        partes[0],
-        partes[1] - 1,
-        partes[2]
+    servicioSelect.replaceChildren(
+        crear("option", { value: "", disabled: true, selected: true, texto: "Selecciona un servicio" }),
+        ...servicios.map((s) => crear("option", {
+            value: s.id,
+            texto: `${s.nombre} · ${formatoCOP(s.precio)}`
+        }))
     );
 
-}
+    profesionalSelect.replaceChildren(
+        crear("option", { value: "", disabled: true, selected: true, texto: "Selecciona una profesional" }),
+        ...profesionales.map((p) => crear("option", { value: p.id, texto: p.nombre }))
+    );
 
-// Obtener la fecha actual en formato YYYY-MM-DD.
-function obtenerFechaHoy() {
-
-    const hoy = new Date();
-
-    const anio = hoy.getFullYear();
-
-    const mes = String(
-        hoy.getMonth() + 1
-    ).padStart(2, "0");
-
-    const dia = String(
-        hoy.getDate()
-    ).padStart(2, "0");
-
-    return `${anio}-${mes}-${dia}`;
-
-}
-
-// Mostrar un mensaje en el selector.
-function limpiarHorarios(mensaje) {
-
-    horaSelect.innerHTML = "";
-
-    const opcion = document.createElement("option");
-
-    opcion.value = "";
-    opcion.textContent = mensaje;
-
-    horaSelect.appendChild(opcion);
-
-}
-
-
-/*
-==========================================
-CONSULTAR HORARIOS OCUPADOS EN FIREBASE
-==========================================
-*/
-
-async function consultarHorariosOcupados(fecha, profesional) {
-
-    // Necesitamos que la cliente haya iniciado sesión.
-    if (!auth.currentUser) {
-        return null;
+    // Preselección desde la tarjeta de servicio (?servicio=...)
+    const sugerido = new URLSearchParams(location.search).get("servicio");
+    if (sugerido && servicios.some((s) => s.id === sugerido)) {
+        servicioSelect.value = sugerido;
     }
-
-    // Consultamos la colección horariosOcupados.
-    const horariosRef = collection(db, "horariosOcupados");
-
-    // Filtramos por fecha y profesional.
-    const consulta = query(
-        horariosRef,
-        where("fecha", "==", fecha),
-        where("profesional", "==", profesional)
-    );
-
-    // Ejecutamos la consulta.
-    const resultado = await getDocs(consulta);
-
-    // Guardamos las horas ocupadas.
-    const horasOcupadas = [];
-
-    resultado.forEach((documento) => {
-        horasOcupadas.push(documento.data().hora);
-    });
-
-    return horasOcupadas;
 }
 
+/* ---------- Disponibilidad ---------- */
 
-// Calcular las horas de una profesional.
+async function consultarOcupados(fecha, profesionalId) {
+    const consulta = query(
+        collection(db, "horariosOcupados"),
+        where("fecha", "==", fecha),
+        where("profesional", "==", profesionalId)
+    );
+    const resultado = await getDocs(consulta);
+    return resultado.docs.map((d) => d.data().hora);
+}
+
 async function actualizarHorarios() {
-
-    limpiarHorarios("Selecciona un horario");
-
     const fecha = fechaInput.value;
-    const profesional = profesionalSelect.value;
+    const profesional = profesionales.find((p) => p.id === profesionalSelect.value);
 
     if (!fecha || !profesional) {
-
-        limpiarHorarios(
-            "Selecciona fecha y profesional"
-        );
-
+        opcionesHora("Selecciona fecha y profesional");
         return;
     }
 
-    const datos = horariosProfesionales[profesional];
-
-    if (!datos) {
-        limpiarHorarios("Profesional no válida");
+    if (fecha < fechaISO()) {
+        opcionesHora("Selecciona una fecha futura");
         return;
     }
 
-    // No permitir fechas anteriores.
-    if (fecha < obtenerFechaHoy()) {
+    opcionesHora("Consultando disponibilidad...");
 
-        limpiarHorarios(
-            "Selecciona una fecha futura"
-        );
-
-        return;
-    }
-
-    const fechaSeleccionada = obtenerFechaLocal(fecha);
-
-    const diaSemana = fechaSeleccionada.getDay();
-
-    // Comprobar que sea un día laboral.
-    if (!datos.dias.includes(diaSemana)) {
-
-        limpiarHorarios(
-            "La profesional no atiende este día"
-        );
-
-        return;
-    }
-
-    const entrada = convertirAMinutos(datos.entrada);
-    const salida = convertirAMinutos(datos.salida);
-
-
-    // Consultar los horarios ocupados en Firebase.
-    let horasOcupadas;
-
+    let ocupadas = [];
     try {
-        horasOcupadas = await consultarHorariosOcupados(
-            fecha,
-            profesional
-        );
+        ocupadas = await consultarOcupados(fecha, profesional.id);
     } catch (error) {
-
-        console.error(
-            "Error al consultar disponibilidad:",
-            error
-        );
-
-        limpiarHorarios(
-            "No se pudo consultar la disponibilidad"
-        );
-
+        console.error("Error al consultar disponibilidad:", error);
+        opcionesHora("No se pudo consultar la disponibilidad");
         return;
     }
 
-    // No mostrar horarios como libres si
-    // todavía no podemos consultar Firebase.
-    if (horasOcupadas === null) {
+    const franjas = generarFranjas(profesional, fecha, ocupadas);
 
-        limpiarHorarios(
-            "Inicia sesión para consultar disponibilidad"
-        );
-
+    if (franjas.length === 0) {
+        const trabaja = profesional.dias.includes(new Date(fecha + "T00:00").getDay());
+        opcionesHora(trabaja ? "No hay horarios disponibles" : "La profesional no atiende este día");
         return;
     }
 
-
-    let cantidadHorarios = 0;
-
-    // Crear bloques de 120 minutos.
-    for (
-        let inicio = entrada;
-        inicio + duracionCita <= salida;
-        inicio += duracionCita
-    ) {
-
-        // No mostrar horarios que ya pasaron hoy.
-        if (fecha === obtenerFechaHoy()) {
-
-            const ahora = new Date();
-
-            const minutosActuales =
-                ahora.getHours() * 60 +
-                ahora.getMinutes();
-
-            if (inicio <= minutosActuales) {
-                continue;
-            }
-        }
-
-        // NUEVO: convertir la hora de inicio.
-        const horaInicio = convertirAHora(inicio);
-
-        // NUEVO: verificar si está ocupada en Firebase.
-        if (horasOcupadas.includes(horaInicio)) {
-            continue;
-        }
-
-        const fin = inicio + duracionCita;
-
-        const opcion = document.createElement("option");
-
-        opcion.value = convertirAHora(inicio);
-
-        opcion.textContent =
-            convertirAHora(inicio) +
-            " - " +
-            convertirAHora(fin);
-
-        horaSelect.appendChild(opcion);
-
-        cantidadHorarios++;
-    }
-
-    if (cantidadHorarios === 0) {
-
-        limpiarHorarios(
-            "No hay horarios disponibles"
-        );
-
-    }
-
+    horaSelect.replaceChildren(
+        crear("option", { value: "", texto: "Selecciona un horario" }),
+        ...franjas.map((f) => crear("option", { value: f.hora, texto: f.etiqueta }))
+    );
 }
 
-// Evitar seleccionar fechas anteriores.
-fechaInput.min = obtenerFechaHoy();
+/* ---------- Registro de la cita ---------- */
 
-// Actualizar al cambiar fecha o profesional.
-fechaInput.addEventListener(
-    "change",
-    actualizarHorarios
-);
+formulario.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
 
-profesionalSelect.addEventListener(
-    "change",
-    actualizarHorarios
-);
+    await esperarSesion();
 
-// Mostrar el mensaje inicial.
-limpiarHorarios(
-    "Selecciona fecha y profesional"
-);
-
-// Actualizar la fecha mínima al regresar a la pestaña.
-document.addEventListener("visibilitychange", () => {
-
-    if (!document.hidden) {
-        fechaInput.min = obtenerFechaHoy();
-        actualizarHorarios();
+    if (!auth.currentUser || !estadoSesion.perfil) {
+        mostrarMensaje([
+            "Para reservar debes iniciar sesión. ",
+            crear("a", { href: "login.html?volver=index.html%23citas", texto: "Iniciar sesión" }),
+            " o ",
+            crear("a", { href: "registro.html", texto: "crear una cuenta" }),
+            "."
+        ], "error");
+        return;
     }
 
+    const nombre = limpiarTexto(nombreInput.value, 80);
+    const servicio = servicios.find((s) => s.id === servicioSelect.value);
+    const profesional = profesionales.find((p) => p.id === profesionalSelect.value);
+    const fecha = fechaInput.value;
+    const hora = horaSelect.value;
+    const celular = normalizarCelular(telefonoInput.value);
+
+    if (nombre.length < 3) return mostrarMensaje("Escribe tu nombre completo.", "error");
+    if (!servicio) return mostrarMensaje("Selecciona un servicio.", "error");
+    if (!fecha || fecha < fechaISO()) return mostrarMensaje("Selecciona una fecha futura.", "error");
+    if (!profesional) return mostrarMensaje("Selecciona una profesional.", "error");
+
+    // Se valida que la hora sea uno de los bloques
+    // válidos (evita valores forzados desde DevTools).
+    const validas = generarFranjas(profesional, fecha).map((f) => f.hora);
+    if (!validas.includes(hora)) {
+        return mostrarMensaje("Selecciona una hora disponible dentro del horario de atención.", "error");
+    }
+
+    if (!celular) {
+        return mostrarMensaje("El número de WhatsApp debe ser un celular colombiano de 10 dígitos (ej. 3001234567).", "error");
+    }
+
+    botonEnviar.disabled = true;
+    mostrarMensaje("Registrando tu cita...", "info");
+
+    try {
+        const lote = writeBatch(db);
+        const refCita = doc(collection(db, "citas"));
+        const refHorario = doc(db, "horariosOcupados", idHorario(profesional.id, fecha, hora));
+
+        lote.set(refCita, {
+            clienteId: auth.currentUser.uid,
+            clienteNombre: nombre,
+            clienteCorreo: auth.currentUser.email,
+            clienteTelefono: celular,
+            servicioId: servicio.id,
+            servicioNombre: servicio.nombre,
+            precio: Number(servicio.precio) || 0,
+            profesionalId: profesional.id,
+            profesionalNombre: profesional.nombre,
+            fecha,
+            hora,
+            estado: "pendiente",
+            creadaEn: serverTimestamp(),
+            actualizadaEn: serverTimestamp()
+        });
+
+        lote.set(refHorario, {
+            profesional: profesional.id,
+            fecha,
+            hora,
+            citaId: refCita.id
+        });
+
+        await lote.commit();
+
+        const texto =
+            `Hola ${NEGOCIO.nombre}, registré una cita:\n` +
+            `• Nombre: ${nombre}\n` +
+            `• Servicio: ${servicio.nombre} (${formatoCOP(servicio.precio)})\n` +
+            `• Profesional: ${profesional.nombre}\n` +
+            `• Fecha: ${fechaLegible(fecha)} a las ${hora}\n` +
+            `• Código: ${refCita.id.slice(0, 8).toUpperCase()}`;
+
+        const enlace = enlaceWhatsApp(NEGOCIO.whatsapp, texto);
+
+        mostrarMensaje([
+            crear("strong", { texto: "¡Cita registrada! " }),
+            `Código ${refCita.id.slice(0, 8).toUpperCase()} · ${servicio.nombre} el ${fechaLegible(fecha)} a las ${hora} con ${profesional.nombre}. `,
+            "Estado: pendiente de confirmación. ",
+            crear("a", { href: enlace, target: "_blank", rel: "noopener", texto: "Avisar por WhatsApp ↗" }),
+            " · ",
+            crear("a", { href: "mi-cuenta.html", texto: "Ver mis citas" })
+        ], "success");
+
+        window.open(enlace, "_blank", "noopener");
+
+        formulario.reset();
+        opcionesHora("Selecciona fecha y profesional");
+        precargarDatos();
+
+    } catch (error) {
+        console.error("Error al registrar la cita:", error);
+        if (error.code === "permission-denied") {
+            mostrarMensaje("Ese horario acaba de ser reservado por otra persona. Elige otro, por favor.", "error");
+            actualizarHorarios();
+        } else {
+            mostrarMensaje("No pudimos registrar la cita. Revisa tu conexión e inténtalo de nuevo.", "error");
+        }
+    } finally {
+        botonEnviar.disabled = false;
+    }
+});
+
+function precargarDatos() {
+    const perfil = estadoSesion.perfil;
+    if (!perfil) return;
+    if (!nombreInput.value) nombreInput.value = perfil.nombre || "";
+    if (!telefonoInput.value && perfil.telefono) {
+        telefonoInput.value = String(perfil.telefono).replace(/^57/, "");
+    }
+}
+
+/* ---------- Inicio ---------- */
+
+fechaInput.min = fechaISO();
+fechaInput.addEventListener("change", actualizarHorarios);
+profesionalSelect.addEventListener("change", actualizarHorarios);
+opcionesHora("Selecciona fecha y profesional");
+
+cargarCatalogos();
+document.addEventListener("sesion-cambio", precargarDatos);
+
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+        fechaInput.min = fechaISO();
+        actualizarHorarios();
+    }
 });

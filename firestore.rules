@@ -1,0 +1,151 @@
+rules_version = '2';
+
+// ==========================================================
+// AL BEAUTY STUDIO - REGLAS DE SEGURIDAD DE CLOUD FIRESTORE
+// ----------------------------------------------------------
+// Estas reglas se ejecutan en los servidores de Firebase y
+// constituyen la capa de autorización del backend: ninguna
+// lectura o escritura llega a la base de datos sin pasar por
+// ellas. Publicar en: Firebase Console > Firestore Database >
+// Reglas (o con "firebase deploy --only firestore:rules").
+// ==========================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function autenticado() {
+      return request.auth != null;
+    }
+
+    function perfil() {
+      return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data;
+    }
+
+    function esAdmin() {
+      return autenticado()
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && perfil().rol == 'admin';
+    }
+
+    function esDueno(uid) {
+      return autenticado() && request.auth.uid == uid;
+    }
+
+    function textoValido(valor, maximo) {
+      return valor is string && valor.size() > 0 && valor.size() <= maximo;
+    }
+
+    // ---------- USUARIOS (clientes y administradores) ----------
+    match /usuarios/{uid} {
+      allow read: if esDueno(uid) || esAdmin();
+
+      // Toda cuenta nueva nace con rol "cliente".
+      allow create: if esDueno(uid)
+        && request.resource.data.rol == 'cliente'
+        && textoValido(request.resource.data.nombre, 80);
+
+      // El cliente puede editar sus datos, pero no su rol
+      // ni su estado. El administrador puede editar todo.
+      allow update: if esAdmin()
+        || (esDueno(uid)
+            && request.resource.data.rol == resource.data.rol
+            && request.resource.data.get('activo', true) == resource.data.get('activo', true));
+
+      allow delete: if esAdmin();
+    }
+
+    // ---------- CATÁLOGOS PÚBLICOS ----------
+    match /servicios/{id} {
+      allow read: if true;
+      allow write: if esAdmin();
+    }
+
+    match /profesionales/{id} {
+      allow read: if true;
+      allow write: if esAdmin();
+    }
+
+    // ---------- HORARIOS OCUPADOS ----------
+    // Solo contienen profesional, fecha y hora (sin datos
+    // personales). El id es "profesional_fecha_hora": si el
+    // documento ya existe, la escritura se considera una
+    // actualización y se rechaza para los clientes, lo que
+    // impide reservar dos veces el mismo horario.
+    match /horariosOcupados/{id} {
+      allow read: if true;
+
+      allow create: if autenticado()
+        && request.resource.data.keys().hasAll(['profesional', 'fecha', 'hora', 'citaId'])
+        && id == request.resource.data.profesional + '_' + request.resource.data.fecha + '_'
+                 + request.resource.data.hora.replace(':', '');
+
+      allow update: if esAdmin();
+
+      allow delete: if esAdmin()
+        || (autenticado()
+            && resource.data.keys().hasAll(['citaId'])
+            && get(/databases/$(database)/documents/citas/$(resource.data.citaId)).data.clienteId == request.auth.uid);
+    }
+
+    // ---------- CITAS ----------
+    match /citas/{id} {
+      allow read: if esAdmin()
+        || (autenticado() && resource.data.clienteId == request.auth.uid);
+
+      allow create: if autenticado()
+        && request.resource.data.clienteId == request.auth.uid
+        && request.resource.data.estado == 'pendiente'
+        && textoValido(request.resource.data.servicioNombre, 80)
+        && request.resource.data.fecha is string
+        && request.resource.data.hora is string;
+
+      // El cliente solo puede cancelar su propia cita.
+      allow update: if esAdmin()
+        || (autenticado()
+            && resource.data.clienteId == request.auth.uid
+            && resource.data.estado in ['pendiente', 'confirmada']
+            && request.resource.data.estado == 'cancelada'
+            && request.resource.data.diff(resource.data).affectedKeys()
+                 .hasOnly(['estado', 'actualizadaEn', 'canceladaPor', 'motivoCancelacion']));
+
+      allow delete: if esAdmin();
+    }
+
+    // ---------- FACTURACIÓN ----------
+    match /facturas/{id} {
+      allow read: if esAdmin()
+        || (autenticado() && resource.data.clienteId == request.auth.uid);
+      allow write: if esAdmin();
+    }
+
+    match /config/{doc} {
+      allow read, write: if esAdmin();
+    }
+
+    // ---------- RECOMENDACIONES DE COLORIMETRÍA ----------
+    match /recomendaciones/{id} {
+      allow read: if esAdmin()
+        || (autenticado() && resource.data.clienteId == request.auth.uid);
+      allow create: if autenticado()
+        && request.resource.data.clienteId == request.auth.uid
+        && request.resource.data.colores is list
+        && request.resource.data.colores.size() <= 12;
+      allow delete: if esAdmin()
+        || (autenticado() && resource.data.clienteId == request.auth.uid);
+    }
+
+    // ---------- OPINIONES ----------
+    match /opiniones/{id} {
+      allow read: if resource.data.visible == true || esAdmin();
+      allow create: if autenticado()
+        && request.resource.data.usuarioId == request.auth.uid
+        && request.resource.data.visible == true
+        && textoValido(request.resource.data.nombre, 60)
+        && textoValido(request.resource.data.comentario, 500)
+        && request.resource.data.calificacion is int
+        && request.resource.data.calificacion >= 1
+        && request.resource.data.calificacion <= 5;
+      allow update, delete: if esAdmin();
+    }
+  }
+}

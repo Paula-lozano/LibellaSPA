@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Mi cuenta | AL Beauty Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="panel.css?v=1">
+</head>
+
+<body>
+    <header class="panel-header">
+        <a class="panel-brand" href="index.html">
+            ✦ AL Beauty Studio
+            <small>MI CUENTA</small>
+        </a>
+        <div class="panel-user">
+            <span id="saludo">Cargando...</span>
+            <a class="btn sec peq" href="index.html#citas">Reservar cita</a>
+            <a class="btn sec peq" href="Simulador.html">Colorimetría</a>
+            <button class="btn peq" type="button" id="btn-salir">Cerrar sesión</button>
+        </div>
+    </header>
+
+    <div id="pantalla-carga" class="cargando">Cargando tu información...</div>
+
+    <main class="panel-main oculto" id="contenido" style="max-width:1100px;margin:0 auto">
+        <h1>Mi cuenta</h1>
+        <p class="subtitulo">Consulta y cancela tus citas, revisa tus pagos y tus recomendaciones de color.</p>
+
+        <div class="tarjeta">
+            <h2>Mis citas</h2>
+            <div class="tabla-wrap" id="tabla-citas"></div>
+            <p class="mensaje" id="msg-citas"></p>
+        </div>
+
+        <div class="dos-col">
+            <div class="tarjeta">
+                <h2>Mis pagos</h2>
+                <div class="tabla-wrap" id="tabla-facturas"></div>
+            </div>
+            <div class="tarjeta">
+                <h2>Mis recomendaciones de colorimetría</h2>
+                <div class="tabla-wrap" id="tabla-recomendaciones"></div>
+            </div>
+        </div>
+
+        <div class="tarjeta">
+            <h2>Mis datos</h2>
+            <form id="form-perfil" novalidate>
+                <div class="form-grid">
+                    <div class="campo">
+                        <label for="perfil-nombre">Nombre</label>
+                        <input id="perfil-nombre" maxlength="80" required>
+                    </div>
+                    <div class="campo">
+                        <label for="perfil-documento">Documento</label>
+                        <input id="perfil-documento" maxlength="12" inputmode="numeric">
+                    </div>
+                    <div class="campo">
+                        <label for="perfil-telefono">Celular (WhatsApp)</label>
+                        <input id="perfil-telefono" maxlength="13" inputmode="numeric">
+                    </div>
+                    <div class="campo">
+                        <label for="perfil-correo">Correo</label>
+                        <input id="perfil-correo" disabled>
+                    </div>
+                </div>
+                <div class="acciones">
+                    <button class="btn" type="submit">Guardar cambios</button>
+                </div>
+                <p class="mensaje" id="msg-perfil"></p>
+            </form>
+        </div>
+    </main>
+
+    <script type="module" src="mi-cuenta.js"></script>
+</body>
+</html>

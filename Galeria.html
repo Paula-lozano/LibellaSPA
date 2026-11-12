@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galería de Diseños</title>
-  <link rel="stylesheet" href="Galeria.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galería de diseños de manicure, pedicure y uñas acrílicas de AL Beauty Studio.">
+  <title>Galería de diseños | AL Beauty Studio</title>
+  <link rel="stylesheet" href="Galeria.css?v=3">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .tabs-galeria { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:10px auto 0; }
+    .tabs-galeria a, .btn-reservar-galeria { padding:8px 16px; border-radius:999px; border:2px solid #b0004f; color:#b0004f; text-decoration:none; font-weight:700; font-family: Arial, sans-serif; background:#fff; }
+    .tabs-galeria a[aria-current="page"], .btn-reservar-galeria { background:#b0004f; color:#fff; }
+    .acciones-galeria { text-align:center; margin:24px 0; }
+  </style>
 </head>
 
 <body>
-  <header class="banner-galeria"><!--Banner del encabezado-->
+  <header class="banner-galeria">
     <h1>Galería de Diseños</h1>
-    <a href="index.html" class="btn-volver">← Volver al inicio</a><!--Boton para volver al incio-->
+    <a href="index.html" class="btn-volver">← Volver al inicio</a>
   </header>
 
-  <section id="titulo-servicio">
-    <h2 style="text-align: center; color: #b0004f;">Diseños de Manicure</h2><!-- Esto se actualizará dinámicamente -->
-  </section>
+  <nav class="tabs-galeria" aria-label="Servicios de la galería">
+    <a href="Galeria.html?servicio=manicure" data-servicio="manicure">Manicure</a>
+    <a href="Galeria.html?servicio=pedicure" data-servicio="pedicure">Pedicure</a>
+    <a href="Galeria.html?servicio=acrilicas" data-servicio="acrilicas">Acrílicas</a>
+  </nav>
 
-  <section class="galeria" id="galeria-contenido">
-  </section>
+  <main>
+    <section id="titulo-servicio">
+      <h2 style="text-align: center; color: #b0004f;">Diseños de Manicure</h2>
+    </section>
 
-  <script src="Galeria.js"></script><!--Conexion con java-->
+    <section class="galeria" id="galeria-contenido" aria-live="polite"></section>
+
+    <div class="acciones-galeria">
+      <a id="btn-reservar-galeria" class="btn-reservar-galeria" href="index.html#citas">Reservar este servicio ↗</a>
+    </div>
+  </main>
 
   <footer class="footer">
-    <p><i class="fas fa-feather"></i>Libella SPA de Uñas</p>
-    <p><i class="fab fa-instagram"></i> @Libella.cute</p>
-    <p><i class="fas fa-phone-alt"></i> 3017501031</p>
+    <p><i class="fas fa-feather" aria-hidden="true"></i> AL Beauty Studio</p>
+    <p><i class="fab fa-instagram" aria-hidden="true"></i> @libella.cute</p>
+    <p><i class="fas fa-phone-alt" aria-hidden="true"></i> 301 750 1031</p>
   </footer>
+
+  <script src="Galeria.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta name="description"
-    content="Libella Spa: belleza, cuidado de uñas y novedades exclusivas por correo.">
+    content="AL Beauty Studio: manicure, pedicure y uñas acrílicas en Bogotá. Reserva tu cita en línea.">
 
-  <title>Libella Spa | Tu belleza, tu momento</title>
+  <title>AL Beauty Studio | Tu belleza, tu momento</title>
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +19,7 @@
     rel="stylesheet">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="Style.css">
+  <link rel="stylesheet" href="Style.css?v=3">
 </head>
 
 <body>
@@ -33,51 +32,35 @@
   <header class="header">
 
     <a class="brand" href="#inicio"
-      aria-label="Libella Spa, inicio">
+      aria-label="AL Beauty Studio, inicio">
 
-      <span class="brand-icon">✦</span>
+      <span class="brand-icon" aria-hidden="true">✦</span>
 
       <span>
-        libella<span class="brand-light">spa</span>
-        <small>NAIL & BEAUTY STUDIO</small>
+        AL <span class="brand-light">Beauty</span>
+        <small>NAIL &amp; BEAUTY STUDIO</small>
       </span>
     </a>
 
-    
+    <!-- MENÚ PRINCIPAL -->
+    <nav aria-label="Navegación principal">
 
-<!-- MENÚ PRINCIPAL DE LIBELLA SPA -->
-<nav aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>
+      <a href="Galeria.html?servicio=manicure">Galería</a>
+      <a href="Simulador.html">Colorimetría</a>
+      <a href="#citas">Reservas</a>
+      <a href="#nosotras">Nosotras</a>
+      <a href="#opiniones">Opiniones</a>
 
-    <a href="#suscripcion">
-        Suscríbete 💌
-    </a>
+      <!-- Se reemplaza según la sesión (sesion.js) -->
+      <span class="menu-sesion" id="menu-sesion">
+        <a href="login.html">Iniciar sesión</a>
+      </span>
 
-    <a href="#servicios">
-        Servicios
-    </a>
-
-    <!-- ACCESO DIRECTO A RESERVAS -->
-    <a href="#citas">
-        Reservas
-    </a>
-
-    <a href="#nosotras">
-        Nosotras
-    </a>
-
-    <a href="#opiniones">
-        Opiniones
-    </a>
-
-    <!-- ACCESO PARA CLIENTES Y ADMINISTRADORA -->
-    <a href="login.html">
-        Iniciar sesión
-    </a>
-
-</nav>
+    </nav>
 
     <a class="btn btn-small" href="#suscripcion">
-      Únete a Libella <span aria-hidden="true">↗</span>
+      Suscríbete <span aria-hidden="true">💌</span>
     </a>
 
   </header>
@@ -100,15 +83,15 @@
         </h1>
 
         <p>
-          Descubre ideas de uñas, consejos de cuidado
-          y novedades especiales de Libella Spa.
-          ¡Todo directamente en tu correo!
+          Manicure, pedicure y uñas acrílicas con atención
+          personalizada. Consulta nuestros servicios,
+          descubre tus colores ideales y reserva tu cita en línea.
         </p>
 
         <div class="hero-actions">
 
-          <a class="btn" href="#suscripcion">
-            Recibe tu bienvenida gratis
+          <a class="btn" href="#citas">
+            Reservar una cita
             <span aria-hidden="true">↗</span>
           </a>
 
@@ -120,7 +103,7 @@
         </div>
 
         <div class="hero-note">
-          <span class="sparkle">✳</span>
+          <span class="sparkle" aria-hidden="true">✳</span>
           <span>
             Tu momento de brillar comienza aquí.
           </span>
@@ -132,14 +115,15 @@
 
         <img
           src="Imagenes/FondoBanner.jpg"
-          alt="Diseños y cuidado de uñas en Libella Spa">
+          alt="Manos con diseño de uñas realizado en AL Beauty Studio"
+          width="900" height="700">
 
         <div class="photo-caption">
-          <span>LIBELLA SPA</span>
+          <span>AL BEAUTY STUDIO</span>
           <strong>Beauty is in the details.</strong>
         </div>
 
-        <div class="hero-floating">
+        <div class="hero-floating" aria-hidden="true">
           ✦
           <br>
           <span>BEAUTY<br>RITUALS</span>
@@ -149,7 +133,7 @@
 
     </section>
 
-    <!-- SUSCRIPCION DESTACADA -->
+    <!-- SUSCRIPCIÓN -->
     <section id="suscripcion" class="newsletter">
 
       <div class="newsletter-stars" aria-hidden="true">
@@ -170,7 +154,7 @@
         <p>
           Forma parte de nuestra comunidad y recibe
           inspiración de uñas, consejos de belleza
-          y novedades exclusivas de Libella Spa.
+          y novedades exclusivas de AL Beauty Studio.
         </p>
 
         <div class="newsletter-benefits">
@@ -192,6 +176,7 @@
             name="email"
             placeholder="Escribe tu correo electrónico"
             autocomplete="email"
+            maxlength="120"
             required>
 
           <button type="submit" id="btn-suscripcion">
@@ -200,7 +185,6 @@
 
         </form>
 
-        <!-- MENSAJE DE CONFIRMACION -->
         <p
           id="mensaje-suscripcion"
           role="status"
@@ -208,9 +192,9 @@
         </p>
 
         <small class="texto-privacidad">
-          Al suscribirte aceptas recibir novedades
-          de Libella Spa. Puedes solicitar tu retiro
-          cuando quieras.
+          Al suscribirte autorizas el tratamiento de tu correo
+          para recibir novedades de AL Beauty Studio (Ley 1581 de 2012).
+          Puedes solicitar tu retiro cuando quieras.
         </small>
 
       </div>
@@ -225,7 +209,7 @@
       <span>✦ BELLEZA EN CADA DETALLE</span>
     </section>
 
-    <!-- SERVICIOS -->
+    <!-- SERVICIOS (precios cargados desde la base de datos) -->
     <section id="servicios" class="section services">
 
       <div class="section-heading">
@@ -247,63 +231,92 @@
 
       <div class="service-grid">
 
-        <article class="service-card">
+        <article class="service-card" data-servicio="manicure">
 
           <div class="service-number">01 / MANOS</div>
           <div class="service-emoji" aria-hidden="true">✦</div>
 
           <h3>Manicure</h3>
 
-          <p>
+          <p class="service-desc">
             Un toque de color y cuidado para resaltar
             la belleza natural de tus manos.
           </p>
 
-          <a href="#citas">
-            Reservar servicio
-            <span aria-hidden="true">↗</span>
-          </a>
+          <span class="service-price" data-precio></span>
+
+          <div class="service-links">
+            <a href="index.html?servicio=manicure#citas">
+              Reservar <span aria-hidden="true">↗</span>
+            </a>
+            <a href="Galeria.html?servicio=manicure">
+              Ver galería <span aria-hidden="true">↗</span>
+            </a>
+          </div>
 
         </article>
 
-        <article class="service-card featured">
+        <article class="service-card featured" data-servicio="pedicure">
 
           <div class="service-number">02 / PIES</div>
           <div class="service-emoji" aria-hidden="true">❋</div>
 
           <h3>Pedicure</h3>
 
-          <p>
+          <p class="service-desc">
             Relajación, bienestar y un acabado
             hermoso para tus pies.
           </p>
 
-          <a href="#citas">
-            Reservar servicio
-            <span aria-hidden="true">↗</span>
-          </a>
+          <span class="service-price" data-precio></span>
+
+          <div class="service-links">
+            <a href="index.html?servicio=pedicure#citas">
+              Reservar <span aria-hidden="true">↗</span>
+            </a>
+            <a href="Galeria.html?servicio=pedicure">
+              Ver galería <span aria-hidden="true">↗</span>
+            </a>
+          </div>
 
         </article>
 
-        <article class="service-card">
+        <article class="service-card" data-servicio="acrilicas">
 
           <div class="service-number">03 / ESTILO</div>
           <div class="service-emoji" aria-hidden="true">✧</div>
 
           <h3>Uñas acrílicas</h3>
 
-          <p>
+          <p class="service-desc">
             Diseños creativos y personalizados
             para expresar tu estilo.
           </p>
 
-          <a href="#citas">
-            Reservar servicio
-            <span aria-hidden="true">↗</span>
-          </a>
+          <span class="service-price" data-precio></span>
+
+          <div class="service-links">
+            <a href="index.html?servicio=acrilicas#citas">
+              Reservar <span aria-hidden="true">↗</span>
+            </a>
+            <a href="Galeria.html?servicio=acrilicas">
+              Ver galería <span aria-hidden="true">↗</span>
+            </a>
+          </div>
 
         </article>
 
+      </div>
+
+      <div class="cta-simulador">
+        <p>
+          <strong>¿No sabes qué color elegir?</strong>
+          Prueba nuestro simulador de colorimetría y recibe
+          una paleta según tu tono y subtono de piel.
+        </p>
+        <a class="btn btn-outline" href="Simulador.html">
+          Abrir simulador <span aria-hidden="true">↗</span>
+        </a>
       </div>
 
     </section>
@@ -315,7 +328,8 @@
 
         <img
           src="Imagenes/FondoSectionMision-Vision.jpg"
-          alt="Ambiente de belleza y bienestar">
+          alt="Espacio de atención de AL Beauty Studio"
+          loading="lazy">
 
         <span class="about-stamp">MADE WITH ♥</span>
 
@@ -331,7 +345,7 @@
         </h2>
 
         <p>
-          En Libella Spa creemos que dedicarte
+          En AL Beauty Studio creemos que dedicarte
           tiempo es una forma de quererte.
           Por eso cuidamos cada detalle para
           que te sientas cómoda, escuchada
@@ -366,7 +380,7 @@
 
     </section>
 
-    <!-- RESERVAS -->
+    <!-- RESERVAS (RF-001 / CU-001) -->
     <section id="citas" class="section booking">
 
       <div class="booking-intro">
@@ -378,21 +392,23 @@
         </h2>
 
         <p>
-          Elige el día y la profesional que prefieras.
-          Completa tus datos para continuar
-          con tu solicitud por WhatsApp.
+          Elige el servicio, el día y la profesional.
+          Verás solo los horarios libres. Tu cita queda
+          registrada y el estudio la confirma; puedes
+          avisarnos por WhatsApp y seguirla desde
+          <a href="mi-cuenta.html">Mi cuenta</a>.
         </p>
 
-        <div class="booking-decoration">✳</div>
+        <div class="booking-decoration" aria-hidden="true">✳</div>
 
       </div>
 
       <div class="form-panel">
 
         <h3>Reserva tu cita</h3>
-        <p>Completa el formulario para comenzar.</p>
+        <p>Debes iniciar sesión para registrar la cita.</p>
 
-        <form id="form-cita">
+        <form id="form-cita" novalidate>
 
           <label for="nombre">Tu nombre</label>
 
@@ -400,35 +416,15 @@
             type="text"
             id="nombre"
             placeholder="¿Cómo te llamas?"
+            autocomplete="name"
+            maxlength="80"
             required>
 
+          <label for="servicio">¿Qué servicio deseas reservar?</label>
 
-<!-- SELECCIÓN DEL SERVICIO -->
-
-<label for="servicio">
-  ¿Qué servicio deseas reservar?
-</label>
-
-<select id="servicio" name="servicio" required>
-
-  <option value="" disabled selected>
-    Selecciona un servicio
-  </option>
-
-  <option value="Manicure">
-    Manicure
-  </option>
-
-  <option value="Pedicure">
-    Pedicure
-  </option>
-
-  <option value="Uñas acrílicas">
-    Uñas acrílicas
-  </option>
-
-</select>
-
+          <select id="servicio" name="servicio" required>
+            <option value="" disabled selected>Cargando servicios...</option>
+          </select>
 
           <div class="form-two">
 
@@ -438,25 +434,10 @@
             </div>
 
             <div>
-
               <label for="profesional">Profesional</label>
-
               <select id="profesional" required>
-
-                <option value="" disabled selected>
-                  Selecciona una profesional
-                </option>
-
-                <option value="alex">
-                  Alexandra Cubillos
-                </option>
-
-                <option value="laura">
-                  Laura Lozano
-                </option>
-
+                <option value="" disabled selected>Cargando...</option>
               </select>
-
             </div>
 
           </div>
@@ -464,39 +445,36 @@
           <div class="form-two">
 
             <div>
-
               <label for="hora">Hora disponible</label>
-
               <select id="hora" required>
-                <option value="">
-                  Selecciona una profesional
-                </option>
+                <option value="">Selecciona fecha y profesional</option>
               </select>
-
             </div>
 
             <div>
-
               <label for="telefono">WhatsApp</label>
-
               <input
                 type="tel"
                 id="telefono"
-                placeholder="Ej. 573001234567"
+                placeholder="Ej. 3001234567"
+                autocomplete="tel"
+                inputmode="numeric"
+                maxlength="13"
                 required>
-
             </div>
 
           </div>
 
+          <p id="mensaje-cita" class="form-message" role="status" aria-live="polite"></p>
+
           <button class="btn full" type="submit">
-            Continuar reserva
+            Agendar cita
             <span aria-hidden="true">↗</span>
           </button>
 
           <small>
-            Al continuar, se abrirá WhatsApp
-            para enviar la solicitud.
+            Tus datos se usan solo para gestionar tu cita
+            (Ley 1581 de 2012).
           </small>
 
         </form>
@@ -511,13 +489,10 @@
       <div class="section-heading">
 
         <div>
-
           <span class="kicker">TU VOZ IMPORTA</span>
-
           <h2>
             Nos encanta <em>escucharte.</em>
           </h2>
-
         </div>
 
         <p>
@@ -531,14 +506,14 @@
 
         <div class="quote-card">
 
-          <span class="quote-mark">“</span>
+          <span class="quote-mark" aria-hidden="true">“</span>
 
           <p>
             La belleza también está en cómo te sientes
             cuando dedicas tiempo a ti misma.
           </p>
 
-          <span>CON CARIÑO, LIBELLA SPA</span>
+          <span>CON CARIÑO, AL BEAUTY STUDIO</span>
 
         </div>
 
@@ -554,15 +529,29 @@
               id="usuario"
               type="text"
               placeholder="Tu nombre"
+              maxlength="60"
               required>
+
+            <label for="calificacion">Calificación</label>
+
+            <select id="calificacion">
+              <option value="5">★★★★★ Excelente</option>
+              <option value="4">★★★★☆ Muy buena</option>
+              <option value="3">★★★☆☆ Buena</option>
+              <option value="2">★★☆☆☆ Regular</option>
+              <option value="1">★☆☆☆☆ Mala</option>
+            </select>
 
             <label for="comentario">Tu experiencia</label>
 
             <textarea
               id="comentario"
               rows="4"
+              maxlength="500"
               placeholder="Cuéntanos qué te pareció..."
               required></textarea>
+
+            <p id="mensaje-opinion" class="form-message" role="status" aria-live="polite"></p>
 
             <button type="submit" class="btn full">
               Publicar opinión
@@ -585,18 +574,18 @@
 
   </main>
 
-  <!-- PIE DE PAGINA -->
+  <!-- PIE DE PÁGINA -->
   <footer class="footer">
 
     <div>
 
       <a class="brand brand-footer" href="#inicio">
 
-        <span class="brand-icon">✦</span>
+        <span class="brand-icon" aria-hidden="true">✦</span>
 
         <span>
-          libella<span class="brand-light">spa</span>
-          <small>NAIL & BEAUTY STUDIO</small>
+          AL <span class="brand-light">Beauty</span>
+          <small>NAIL &amp; BEAUTY STUDIO</small>
         </span>
 
       </a>
@@ -612,8 +601,9 @@
 
       <strong>EXPLORA</strong>
 
-      <a href="#suscripcion">Suscríbete</a>
       <a href="#servicios">Servicios</a>
+      <a href="Galeria.html?servicio=manicure">Galería</a>
+      <a href="Simulador.html">Colorimetría</a>
       <a href="#citas">Reservas</a>
 
     </div>
@@ -622,18 +612,18 @@
 
       <strong>CONTÁCTANOS</strong>
 
-      <span>WhatsApp: 301 750 1031</span>
-      <span>Instagram: @ibella.cute</span>
+      <a href="https://wa.me/573017501031" target="_blank" rel="noopener">WhatsApp: 301 750 1031</a>
+      <span>Instagram: @libella.cute</span>
 
     </div>
 
     <div class="copyright">
-      © Libella Spa · Hecho con amor ✦
+      © 2026 AL Beauty Studio · Hecho con amor ✦
     </div>
 
   </footer>
 
-  <!-- BOTON PARA VOLVER ARRIBA -->
+  <!-- BOTÓN PARA VOLVER ARRIBA -->
   <button
     class="back-top"
     id="back-top"
@@ -642,18 +632,18 @@
     ↑
   </button>
 
-  <!-- JAVASCRIPT DEL PROYECTO -->
-  <script src="Java.js"></script>
-
-  <!-- EMAILJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- EMAILJS (suscripción) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
   <script src="Suscripcion.js"></script>
 
   <!-- ANIMACIONES -->
   <script src="Interacciones.js"></script>
 
-<!-- HORARIOS Y RESERVAS CON FIREBASE -->
-<script type="module" src="reservas.js"></script>
+  <!-- MÓDULOS CONECTADOS A FIREBASE -->
+  <script type="module" src="sesion.js"></script>
+  <script type="module" src="catalogo.js"></script>
+  <script type="module" src="reservas.js"></script>
+  <script type="module" src="opiniones.js"></script>
 
 </body>
 </html>
