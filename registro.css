@@ -1,0 +1,252 @@
+
+/* ======================================
+   LIBELLA SPA - REGISTRO DE CLIENTES
+====================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    color: #57334b;
+    background: linear-gradient(
+        135deg,
+        #fff6fa,
+        #f4d9e5,
+        #fceaf2
+    );
+}
+
+/* ENCABEZADO */
+
+.register-header {
+    min-height: 70px;
+    padding: 15px 5%;
+    background: #fff9fc;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand {
+    color: #a74375;
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.brand small {
+    display: block;
+    margin-left: 18px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.back-home {
+    padding: 11px 19px;
+    color: #a74375;
+    background: #fff1f6;
+    border: 1px solid #ebc5d6;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-home:hover {
+    background: #f7d9e6;
+}
+
+/* CONTENEDOR PRINCIPAL */
+
+.register-main {
+    min-height: calc(100vh - 70px);
+    padding: 45px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* TARJETA DE REGISTRO */
+
+.register-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 38px 35px;
+
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(126, 60, 95, 0.12);
+    text-align: center;
+}
+
+.register-icon {
+    color: #bf5b8d;
+    font-size: 30px;
+}
+
+.register-kicker {
+    color: #b54b7e;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.register-card h1 {
+    margin: 12px 0;
+    color: #813b62;
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+}
+
+.register-description {
+    margin-bottom: 28px;
+    color: #806477;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* FORMULARIO */
+
+.form-group {
+    margin-bottom: 17px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px 14px;
+
+    border: 1px solid #edc6d8;
+    border-radius: 9px;
+
+    background: #fffafd;
+    color: #57334b;
+
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #bd5a8a;
+    box-shadow: 0 0 0 3px rgba(189, 90, 138, 0.12);
+}
+
+/* MENSAJES */
+
+.register-message {
+    min-height: 18px;
+    margin: 10px 0;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* BOTÓN PRINCIPAL */
+
+.register-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #bd5a8a;
+    color: white;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.register-button:hover {
+    background: #9e416f;
+}
+
+/* ENLACE PARA INICIAR SESIÓN */
+
+.login-access {
+    margin-top: 25px;
+}
+
+.login-access p {
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.login-access a {
+    display: inline-block;
+    padding: 10px 24px;
+
+    border: 1px solid #ebc5d6;
+    border-radius: 30px;
+
+    background: #fff1f6;
+    color: #823c61;
+
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-access a:hover {
+    background: #f4d3e2;
+}
+
+/* TEXTO FINAL */
+
+.register-footer {
+    margin-top: 25px;
+    color: #c05b89;
+    font-family: "Playfair Display", serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 480px) {
+
+    .register-header {
+        padding: 15px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .back-home {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+
+    .register-main {
+        padding: 25px 15px;
+    }
+
+    .register-card {
+        padding: 30px 22px;
+    }
+
+    .register-card h1 {
+        font-size: 28px;
+    }
+}
