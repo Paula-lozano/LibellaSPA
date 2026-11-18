@@ -9,21 +9,13 @@
   <!-- Imagen del encabezado con prioridad (mejora el LCP) -->
   <link rel="preload" as="image" href="Imagenes/FondoBanner.jpg" fetchpriority="high">
 
-  <link rel="stylesheet" href="Galeria.css?v=4">
+  <link rel="stylesheet" href="Galeria.css?v=5">
 
   <!-- Fuente cargada sin bloquear el pintado de la página -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"></noscript>
-
-  <style>
-    .tabs-galeria { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:10px auto 0; }
-    .tabs-galeria a, .btn-reservar-galeria { padding:8px 16px; border-radius:999px; border:2px solid #b0004f; color:#b0004f; text-decoration:none; font-weight:700; font-family: Arial, sans-serif; background:#fff; }
-    .tabs-galeria a[aria-current="page"], .btn-reservar-galeria { background:#b0004f; color:#fff; }
-    .acciones-galeria { text-align:center; margin:24px 0; }
-    .icono { color:#b0004f; margin-right:4px; }
-  </style>
 </head>
 
 <body>
@@ -40,7 +32,7 @@
 
   <main>
     <section id="titulo-servicio">
-      <h2 style="text-align: center; color: #b0004f;">Diseños de Manicure</h2>
+      <h2 class="titulo-galeria">Diseños de Manicure</h2>
     </section>
 
     <section class="galeria" id="galeria-contenido" aria-live="polite"></section>

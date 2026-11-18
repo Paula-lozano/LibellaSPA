@@ -15,7 +15,7 @@
         rel="stylesheet">
 
     <!-- Estilos de la página de registro -->
-    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="registro.css?v=2">
 
 </head>
 
@@ -54,7 +54,7 @@
             </p>
 
             <!-- FORMULARIO DE REGISTRO -->
-            <form id="form-registro">
+            <form id="form-registro" method="post">
 
                 <div class="form-group">
 
@@ -158,8 +158,8 @@
 
                 </div>
 
-                <label class="consentimiento" style="display:flex;gap:8px;align-items:flex-start;font-size:13px;text-align:left;">
-                    <input type="checkbox" id="acepta-datos" required style="width:auto;margin-top:3px;">
+                <label class="consentimiento">
+                    <input type="checkbox" id="acepta-datos" required class="check-consentimiento">
                     <span>Autorizo a AL Beauty Studio a tratar mis datos personales para gestionar mis citas y facturas, conforme a la Ley 1581 de 2012.</span>
                 </label>
 

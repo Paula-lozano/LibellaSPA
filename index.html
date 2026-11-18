@@ -172,7 +172,7 @@
         </div>
 
         <!-- FORMULARIO CONECTADO A EMAILJS -->
-        <form id="form-suscripcion">
+        <form id="form-suscripcion" method="post">
 
           <label class="sr-only" for="email-suscripcion">
             Correo electrónico
@@ -416,7 +416,7 @@
         <h3>Reserva tu cita</h3>
         <p>Debes iniciar sesión para registrar la cita.</p>
 
-        <form id="form-cita" novalidate>
+        <form id="form-cita" method="post" novalidate>
 
           <label for="nombre">Tu nombre</label>
 
@@ -529,7 +529,7 @@
 
           <h3>Déjanos tu opinión</h3>
 
-          <form id="form-opinion">
+          <form id="form-opinion" method="post">
 
             <label for="usuario">Nombre</label>
 
@@ -640,7 +640,7 @@
   </button>
 
   <!-- EMAILJS (suscripción) -->
-  <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" integrity="sha256-BS9pFqIbpb4UA2ZDnoG4StETY8hN+6KgbyCMe0pvbV8=" crossorigin="anonymous"></script>
   <script defer src="Suscripcion.js"></script>
 
   <!-- ANIMACIONES -->

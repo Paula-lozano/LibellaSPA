@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="panel.css?v=1">
+    <link rel="stylesheet" href="panel.css?v=2">
 </head>
 
 <body>
@@ -73,7 +73,7 @@
                 <div class="tarjeta">
                     <h2>Agenda del día por profesional</h2>
                     <div class="filtros">
-                        <div class="campo" style="max-width:220px">
+                        <div class="campo u-max220">
                             <label for="agenda-fecha">Fecha</label>
                             <input type="date" id="agenda-fecha">
                         </div>
@@ -119,7 +119,7 @@
 
                 <div class="tarjeta">
                     <h2>Nueva factura</h2>
-                    <form id="form-factura" novalidate>
+                    <form id="form-factura" method="post" novalidate>
                         <div class="form-grid">
                             <div class="campo">
                                 <label for="fac-cliente">Cliente</label>
@@ -150,16 +150,16 @@
                             </div>
                         </div>
 
-                        <h2 style="margin-top:18px">Servicios (ítems)</h2>
+                        <h2 class="u-mt18">Servicios (ítems)</h2>
                         <div class="tabla-wrap">
                             <table class="items-factura">
                                 <thead>
                                     <tr>
                                         <th>Servicio</th>
-                                        <th style="width:110px">Cantidad</th>
-                                        <th style="width:160px">Valor unitario</th>
-                                        <th class="num" style="width:140px">Subtotal</th>
-                                        <th style="width:60px"><span class="oculto">Quitar</span></th>
+                                        <th class="u-w110">Cantidad</th>
+                                        <th class="u-w160">Valor unitario</th>
+                                        <th class="num u-w140">Subtotal</th>
+                                        <th class="u-w60"><span class="oculto">Quitar</span></th>
                                     </tr>
                                 </thead>
                                 <tbody id="items-factura"></tbody>
@@ -169,7 +169,7 @@
                             <button class="btn sec peq" type="button" id="btn-agregar-item">+ Agregar servicio</button>
                         </div>
 
-                        <div class="campo ancho" style="margin-top:12px">
+                        <div class="campo ancho u-mt12">
                             <label for="fac-observaciones">Observaciones</label>
                             <textarea id="fac-observaciones" rows="2" maxlength="300"></textarea>
                         </div>
@@ -287,7 +287,7 @@
                             <label for="clientes-buscar">Buscar por nombre, documento o correo</label>
                             <input type="search" id="clientes-buscar" placeholder="Ej. María o 1012345678">
                         </div>
-                        <div class="campo" style="max-width:200px">
+                        <div class="campo u-max200">
                             <label for="clientes-rol">Rol</label>
                             <select id="clientes-rol">
                                 <option value="">Todos</option>
@@ -308,7 +308,7 @@
                 <p class="subtitulo">Registro, actualización y consulta de servicios (RF-002 / CU-002).</p>
                 <div class="tarjeta">
                     <h2 id="titulo-form-servicio">Nuevo servicio</h2>
-                    <form id="form-servicio" novalidate>
+                    <form id="form-servicio" method="post" novalidate>
                         <input type="hidden" id="srv-id">
                         <div class="form-grid">
                             <div class="campo">
@@ -364,7 +364,7 @@
                 <p class="subtitulo">Horario de trabajo de cada profesional. La disponibilidad de reservas se calcula con estos datos.</p>
                 <div class="tarjeta">
                     <h2 id="titulo-form-profesional">Nueva profesional</h2>
-                    <form id="form-profesional" novalidate>
+                    <form id="form-profesional" method="post" novalidate>
                         <input type="hidden" id="pro-id">
                         <div class="form-grid">
                             <div class="campo">
@@ -395,7 +395,7 @@
                                 </select>
                             </div>
                             <div class="campo ancho">
-                                <span style="font-size:13px;font-weight:700;color:var(--suave)">Días de atención</span>
+                                <span class="u-etiqueta-dias">Días de atención</span>
                                 <div class="dias" id="pro-dias"></div>
                             </div>
                         </div>

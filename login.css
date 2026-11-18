@@ -391,3 +391,6 @@ body {
 
 
 }
+
+/* Enlace de recuperación (antes en un estilo en línea; requisito de la política CSP) */
+.enlace-recuperar { justify-self: end !important; font-size: 14px !important; }

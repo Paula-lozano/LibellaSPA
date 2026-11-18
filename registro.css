@@ -250,3 +250,7 @@ body {
         font-size: 28px;
     }
 }
+
+/* Casilla de autorización de datos (antes en estilos en línea; requisito de la política CSP) */
+.consentimiento { display: flex !important; gap: 8px !important; align-items: flex-start !important; font-size: 13px !important; text-align: left !important; }
+.check-consentimiento { width: auto !important; margin-top: 3px !important; }
